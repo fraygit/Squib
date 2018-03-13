@@ -6,13 +6,11 @@ using System.Web.Mvc;
 
 namespace Squib.Backoffice.Controllers
 {
-    [Authorize]
-    public class DashboardController : Controller
+    public class LoginController : Controller
     {
         //
-        // GET: /Dashboard/
+        // GET: /Login/
 
-        [Authorize]
         public ActionResult Index()
         {
             return View();
