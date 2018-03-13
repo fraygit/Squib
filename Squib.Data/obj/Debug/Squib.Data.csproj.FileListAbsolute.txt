@@ -1,0 +1,12 @@
+C:\Projects\PromoApp\SquibWeb\SquibGit\Squib.Data\obj\Debug\Squib.Data.csprojResolveAssemblyReference.cache
+C:\Projects\PromoApp\SquibWeb\SquibGit\Squib.Data\bin\Debug\Squib.Data.dll
+C:\Projects\PromoApp\SquibWeb\SquibGit\Squib.Data\bin\Debug\Squib.Data.pdb
+C:\Projects\PromoApp\SquibWeb\SquibGit\Squib.Data\bin\Debug\MongoDB.Bson.dll
+C:\Projects\PromoApp\SquibWeb\SquibGit\Squib.Data\bin\Debug\MongoDB.Driver.Core.dll
+C:\Projects\PromoApp\SquibWeb\SquibGit\Squib.Data\bin\Debug\MongoDB.Driver.dll
+C:\Projects\PromoApp\SquibWeb\SquibGit\Squib.Data\bin\Debug\System.Runtime.InteropServices.RuntimeInformation.dll
+C:\Projects\PromoApp\SquibWeb\SquibGit\Squib.Data\bin\Debug\MongoDB.Bson.xml
+C:\Projects\PromoApp\SquibWeb\SquibGit\Squib.Data\bin\Debug\MongoDB.Driver.xml
+C:\Projects\PromoApp\SquibWeb\SquibGit\Squib.Data\bin\Debug\MongoDB.Driver.Core.xml
+C:\Projects\PromoApp\SquibWeb\SquibGit\Squib.Data\obj\Debug\Squib.Data.dll
+C:\Projects\PromoApp\SquibWeb\SquibGit\Squib.Data\obj\Debug\Squib.Data.pdb
