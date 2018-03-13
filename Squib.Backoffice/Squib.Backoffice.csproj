@@ -111,6 +111,7 @@
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\PartialController.cs" />
+    <Compile Include="Controllers\RegisterController.cs" />
     <Compile Include="Custom\SquibMembershipProvider.cs" />
     <Compile Include="Custom\SquibRoleProvider.cs" />
     <Compile Include="Global.asax.cs">
@@ -1288,6 +1289,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Login\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_loginLayout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Register\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
