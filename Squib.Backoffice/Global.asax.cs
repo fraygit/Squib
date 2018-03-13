@@ -1,4 +1,8 @@
-﻿using System;
+﻿using SimpleInjector;
+using SimpleInjector.Integration.Web;
+using Squib.Data.Interface;
+using Squib.Data.Repository;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -14,6 +18,11 @@ namespace Squib.Backoffice
     {
         protected void Application_Start()
         {
+            var container = new Container();
+            container.Options.DefaultScopedLifestyle = new WebRequestLifestyle();
+
+            container.Register<IUserRepository, UserRepository>(Lifestyle.Scoped);
+
             AreaRegistration.RegisterAllAreas();
 
             WebApiConfig.Register(GlobalConfiguration.Configuration);
