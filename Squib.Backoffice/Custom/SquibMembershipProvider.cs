@@ -1,6 +1,12 @@
-﻿using System;
+﻿using SimpleInjector;
+using SimpleInjector.Integration.Web;
+using Squib.Data.Interface;
+using Squib.Data.Repository;
+using Squib.Data.Security;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Security;
 
@@ -147,6 +153,18 @@ namespace Squib.Backoffice.Custom
 
         public override bool ValidateUser(string username, string password)
         {
+            var container = new Container();
+            container.Options.DefaultScopedLifestyle = new WebRequestLifestyle();
+            container.Verify();
+
+            var userRepository = container.GetInstance<UserRepository>();
+
+            var user = Task.Run(() => userRepository.GetUser(username)).Result;
+            if (user != null)
+            {
+                return user.Password == SquibCrypto.HashSha256(password);
+            }
+
             return false;
         }
     }

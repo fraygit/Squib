@@ -2,6 +2,7 @@
 using Squib.Backoffice.Models;
 using Squib.Data.Interface;
 using Squib.Data.Model;
+using Squib.Data.Security;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,7 +37,8 @@ namespace Squib.Backoffice.Controllers
                     Email = request.Email,
                     FirstName = request.FirstName,
                     LastName = request.LastName,
-                    VerificationCode = ObjectId.GenerateNewId().ToString()
+                    VerificationCode = ObjectId.GenerateNewId().ToString(),
+                    Password = SquibCrypto.HashSha256(request.Password)
                 };
                 await _userRepository.CreateSync(user);
 
