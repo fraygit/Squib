@@ -43,6 +43,7 @@ namespace Squib.Data.Service
             var builder = Builders<T>.Filter;
             var filter = builder.Eq("_id", carId);
             entity.Id = carId;
+            entity.DateModified = DateTime.UtcNow;
             var result = await ConnectionHandler.MongoCollection.ReplaceOneAsync(filter, entity);
             return result;
         }
@@ -58,6 +59,7 @@ namespace Squib.Data.Service
 
         public virtual async Task<bool> CreateSync(T entity)
         {
+            entity.DateCreated = DateTime.UtcNow;
             await ConnectionHandler.MongoCollection.InsertOneAsync(entity);
             return true;
         }

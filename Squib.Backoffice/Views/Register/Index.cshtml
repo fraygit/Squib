@@ -3,7 +3,7 @@
 }
 
 <section class="content">
-    <div class="container-center lg animated slideInDown">
+    <div class="container-center lg animated slideInDown" style="margin:0 auto 0!important;">
 
         <div class="view-header">
             <div class="header-icon">
@@ -20,51 +20,129 @@
             <div class="panel-body">
                 <p>
                 </p>
-                <form action="index.html" id="loginForm" novalidate>
                     <div class="row">
-                        <div class="form-group col-lg-6">
-                            <label>Email Address</label>
-                            <input type="" value="" id="username" class="form-control" name="">
-                            <span class="help-block small">Your unique username to app</span>
-                        </div>
-                        <div class="form-group col-lg-6">
-                            <label>Organisation Name</label>
-                            <input type="" value="" id="email" class="form-control" name="">
-                            <span class="help-block small">Name of your shop</span>
-                        </div>
-                        <div class="form-group col-lg-6">
-                            <label>Password</label>
-                            <input type="password" value="" id="password" class="form-control" name="">
-                            <span class="help-block small">Your hard to guess password</span>
-                        </div>
-                        <div class="form-group col-lg-6">
-                            <label>Repeat Password</label>
-                            <input type="password" value="" id="repeatpassword" class="form-control" name="">
-                            <span class="help-block small">Please repeat your pasword</span>
-                        </div>
-                        <div class="form-group col-lg-6">
-                            <label>First Name</label>
-                            <input type="" value="" id="email" class="form-control" name="">
-                            <span class="help-block small">Your mobile or phone number</span>
-                        </div>
-                        <div class="form-group col-lg-6">
-                            <label>Last Name</label>
-                            <input type="" value="" id="email" class="form-control" name="">
-                            <span class="help-block small">Your mobile or phone number</span>
-                        </div>
-                        <div class="form-group col-lg-6">
-                            <label>Contact Number</label>
-                            <input type="" value="" id="email" class="form-control" name="">
-                            <span class="help-block small">Your mobile or phone number</span>
-                        </div>
-
+                        <form id="frmRegister">
+                            <div class="form-group col-lg-6">
+                                <label>Email Address</label>
+                                <input type="text" id="txtEmail" class="form-control">
+                                <span class="help-block small">Your unique username to app</span>
+                            </div>
+                            <div class="form-group col-lg-6">
+                                <label>Organisation Name</label>
+                                <input type="text" id="txtOrganisationName" class="form-control">
+                                <span class="help-block small">Name of your shop</span>
+                            </div>
+                            <div class="form-group col-lg-6">
+                                <label>Password</label>
+                                <input type="password" id="txtPassword" class="form-control">
+                                <span class="help-block small">Your hard to guess password</span>
+                            </div>
+                            <div class="form-group col-lg-6">
+                                <label>Repeat Password</label>
+                                <input type="text" id="txtRepeatPassword" class="form-control">
+                                <span class="help-block small">Please repeat your pasword</span>
+                            </div>
+                            <div class="form-group col-lg-6">
+                                <label>First Name</label>
+                                <input type="text" id="txtFirstName" class="form-control">
+                                <span class="help-block small">Your first name</span>
+                            </div>
+                            <div class="form-group col-lg-6">
+                                <label>Last Name</label>
+                                <input type="text" id="txtLastName" class="form-control">
+                                <span class="help-block small">Your surname</span>
+                            </div>
+                            <div class="form-group col-lg-6">
+                                <label>Contact Number</label>
+                                <input type="text" id="txtNumber" class="form-control">
+                                <span class="help-block small">Your mobile or phone number</span>
+                            </div>
+                        </form>
                     </div>
                     <div>
-                        <button class="btn btn-accent">Register</button>
+                        <button class="btn btn-accent" id="btnRegister">Register</button>
                         <a class="btn btn-default" href="/login">Login</a>
                     </div>
-                </form>
+                
             </div>
         </div>
     </div>
 </section>
+
+@section Scripts{
+    <script type="text/javascript">
+        $(function () {
+            $("#btnRegister").click(function () {
+                $("#btnRegister").prop("disabled", "true");
+                var isValid = true;
+
+                var registerData = {
+                    Email: $("#txtEmail").val(),
+                    OrganisationName: $("#txtOrganisationName").val(),
+                    Password: $("#txtPassword").val(),
+                    FirstName: $("#txtFirstName").val(),
+                    LastName: $("#txtLastName").val(),
+                    ContactNumber: $("#txtNumber").val()
+                }
+
+                if (isBlank(registerData.Email)) {
+                    isValid = false;
+                    AlertWarning("Please input email address.");
+                }
+                if (isBlank(registerData.OrganisationName)) {
+                    isValid = false;
+                    AlertWarning("Please input organisation name.");
+                }
+                if (isBlank(registerData.Password)) {
+                    isValid = false;
+                    AlertWarning("Please input password.");
+                }
+                if (isBlank(registerData.FirstName)) {
+                    isValid = false;
+                    AlertWarning("Please input first name.");
+                }
+                if (isBlank(registerData.LastName)) {
+                    isValid = false;
+                    AlertWarning("Please input last name.");
+                }
+                if (isBlank(registerData.ContactNumber)) {
+                    isValid = false;
+                    AlertWarning("Please input contact number.");
+                }
+
+                if (isValid) {
+                    if (registerData.Password == $("#txtRepeatPassword").val()) {
+                        $.ajax({
+                            type: "POST",
+                            url: "@Url.Action("RegisterUser", "Register")",
+                            contentType: "application/json",
+                        dataType: "json",
+                        data: JSON.stringify(registerData),
+                        success: function (d) {
+                            if (d.IsSuccess == true) {
+                                AlertSuccess("Successfully registered! We have sent you an email, please click on the link to verify email address.");
+                                $("#frmRegister")[0].reset();
+                                setTimeout(function () {
+                                    document.location.href = "/login";
+                                }, 4000);
+                            }
+                            else {
+                                AlertError('Error registering user, ' + d.Message);
+                            }
+                        },
+                        error: function (xhr, textStatus, errorThrown) {
+                            AlertError('Oopps! We are experiencing some problem. Please try again later.');
+                        }
+                    });
+                    }
+                    else {
+                        AlertWarning("Password doest not match.");
+                    }
+                }
+
+                $("#btnRegister").removeAttr("disabled");
+                
+            });
+        });
+    </script>
+}

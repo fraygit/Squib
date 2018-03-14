@@ -10,5 +10,6 @@ namespace Squib.Data.Interface
 {
     public interface IUserRepository : IEntityService<User>
     {
+        Task<User> GetUser(string username);
     }
 }
