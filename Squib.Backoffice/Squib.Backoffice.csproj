@@ -146,6 +146,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\JsonGenericResult.cs" />
+    <Compile Include="Models\LoginModel.cs" />
+    <Compile Include="Models\ReqLogin.cs" />
     <Compile Include="Models\ReqRegisterUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
