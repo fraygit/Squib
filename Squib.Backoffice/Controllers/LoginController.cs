@@ -24,6 +24,12 @@ namespace Squib.Backoffice.Controllers
             return View(request);
         }
 
+        public ActionResult Logout()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Index", new LoginModel { Message = "" });
+        }
+
         public async Task<ActionResult> Validate(ReqLogin loginModel)
         {
             ViewBag.ErrorMessage = "";
