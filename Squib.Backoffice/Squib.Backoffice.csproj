@@ -139,6 +139,7 @@
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\PartialController.cs" />
+    <Compile Include="Controllers\PromoController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
     <Compile Include="Custom\SquibMembershipProvider.cs" />
     <Compile Include="Custom\SquibRoleProvider.cs" />
@@ -155,6 +156,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Content Include="Content\images\user.png" />
     <Content Include="Global.asax" />
     <Content Include="scripts\Custom\common.js" />
     <Content Include="scripts\luna.js" />
@@ -1333,6 +1335,9 @@
       <Project>{fcbb5cdf-70c4-4021-a508-dd99df4227d1}</Project>
       <Name>Squib.Data</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Promo\Create.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

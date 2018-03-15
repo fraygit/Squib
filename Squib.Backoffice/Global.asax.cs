@@ -24,6 +24,7 @@ namespace Squib.Backoffice
             container.Options.DefaultScopedLifestyle = new WebRequestLifestyle();
 
             container.Register<IUserRepository, UserRepository>(Lifestyle.Scoped);
+            container.Register<IPromoRepository, PromoRepository>(Lifestyle.Scoped);
 
             container.RegisterMvcControllers(Assembly.GetExecutingAssembly());
             container.Verify();

@@ -1,4 +1,5 @@
-﻿using Squib.Data.Entities.Base;
+﻿using MongoDB.Bson;
+using Squib.Data.Entities.Base;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,7 @@ namespace Squib.Data.Model
 {
     public class Promo : MongoEntity
     {
+        public ObjectId OrganisationId { get; set; }
         public string Title { get; set; }
         public decimal Price { get; set; }
         public string Description { get; set; }
