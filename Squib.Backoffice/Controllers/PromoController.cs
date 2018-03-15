@@ -15,7 +15,7 @@ namespace Squib.Backoffice.Controllers
         private IUserRepository _userRepository;
         private IPromoRepository _promoRepository;
 
-        public PromoController(IUserRepository _userRepository)
+        public PromoController(IUserRepository _userRepository, IPromoRepository _promoRepository)
         {
             this._userRepository = _userRepository;
             this._promoRepository = _promoRepository;
