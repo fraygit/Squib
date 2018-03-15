@@ -1,4 +1,5 @@
 ﻿using Squib.Backoffice.Models;
+using Squib.Backoffice.Services;
 using Squib.Data.Interface;
 using Squib.Data.Model;
 using System;
@@ -14,11 +15,13 @@ namespace Squib.Backoffice.Controllers
     {
         private IUserRepository _userRepository;
         private IPromoRepository _promoRepository;
+        private IOrganisationRepository _organisationRepository;
 
-        public PromoController(IUserRepository _userRepository, IPromoRepository _promoRepository)
+        public PromoController(IUserRepository _userRepository, IPromoRepository _promoRepository, IOrganisationRepository _organisationRepository)
         {
             this._userRepository = _userRepository;
             this._promoRepository = _promoRepository;
+            this._organisationRepository = _organisationRepository;
         }
 
         public ActionResult Index()
@@ -27,9 +30,14 @@ namespace Squib.Backoffice.Controllers
         }
 
         [Authorize]
-        public ActionResult Create()
+        public async Task<ActionResult> Create()
         {
-            return View();
+            var model = new CreatePromoViewModel();
+
+            var orgService = new OrganisationService(_organisationRepository, _userRepository);
+            model.Organisations = await orgService.Get(User.Identity.Name);
+
+            return View(model);
         }
 
         [Authorize]

@@ -138,6 +138,7 @@
   <ItemGroup>
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\OrganisationController.cs" />
     <Compile Include="Controllers\PartialController.cs" />
     <Compile Include="Controllers\PromoController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
@@ -146,11 +147,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CreatePromoViewModel.cs" />
     <Compile Include="Models\JsonGenericResult.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\ReqLogin.cs" />
     <Compile Include="Models\ReqRegisterUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\OrganisationService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\FilterConfig.cs" />
