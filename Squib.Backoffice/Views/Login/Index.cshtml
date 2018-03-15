@@ -5,7 +5,7 @@
 <!-- Main content-->
 <section class="content">
     <div class="container-center animated slideInDown">
-
+        <span id="pnlMessage" data-message="@Model.Message"></span>
         <div class="view-header">
             <div class="header-icon">
                 <i class="pe page-header-icon pe-7s-unlock"></i>
@@ -41,3 +41,14 @@
     </div>
 </section>
 <!-- End main content-->
+
+@section Scripts{
+    <script type="text/javascript">
+        $(function () {
+            var message = $("#pnlMessage").data("message");
+            if (!isBlank(message)) {
+                AlertWarning(message);
+            }
+        });
+    </script>
+}
