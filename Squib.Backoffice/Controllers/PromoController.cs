@@ -42,7 +42,7 @@ namespace Squib.Backoffice.Controllers
 
         [Authorize]
         [HttpPost]
-        public async Task<JsonResult> SaveNew(Promo request)
+        public async Task<JsonResult> SaveNew(ReqCreatePromo request)
         {
 
             return Json(new JsonGenericResult
