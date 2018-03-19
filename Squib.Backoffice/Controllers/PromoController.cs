@@ -58,11 +58,39 @@ namespace Squib.Backoffice.Controllers
             var promoId = Request["PromoId"].ToString();
             if (Request.Files.Count > 0)
             {
+                var amazon = new AmazonService();
                 for (var i = 0; i < Request.Files.Count; i++)
                 {
                     var file = Request.Files[i];
                     var filename = Path.GetFileName(file.FileName);
-                    file.SaveAs(Server.MapPath("~/TempUpload/" + filename));
+
+                    var tempFilePath = Server.MapPath("~/TempUpload/" + filename);
+                    var s3Path = string.Format("images/{0}", Guid.NewGuid()); 
+
+                    file.SaveAs(tempFilePath);
+                    using (var fileIO = System.IO.File.OpenRead(tempFilePath))
+                    {
+                        using (MemoryStream tempFileStream = new MemoryStream())
+                        {
+                            fileIO.CopyTo(tempFileStream);
+                            amazon.S3Upload(s3Path, MimeMapping.GetMimeMapping(file.FileName), tempFileStream);
+                        }
+                    }
+                    System.IO.File.Delete(tempFilePath);
+
+                    var promo = await _promoRepository.Get(promoId);
+                    if (promo.Images == null)
+                    {
+                        promo.Images = new List<PromoImages>();
+                    }
+                    promo.Images.Add(new PromoImages
+                    {
+                        Filename = filename,
+                        IsMain = false,
+                        Path = s3Path,
+                        Sort = 0
+                    });
+                    await _promoRepository.Update(promoId, promo);
                 }
             }
             return Json("");

@@ -14,7 +14,7 @@ namespace Squib.Backoffice.Services
         private readonly string accessKeyId;
         private readonly string secretAccessKeyId;
         private readonly string bucketName;
-        private Amazon.RegionEndpoint Region = Amazon.RegionEndpoint.USEast1;
+        private Amazon.RegionEndpoint Region = Amazon.RegionEndpoint.APSoutheast2;
 
         public AmazonService()
         {
