@@ -19,7 +19,7 @@ namespace Squib.Data.Model
         public DateTime To { get; set; }
         public int MaxNumberOfVoucher { get; set; }
         public string Description { get; set; }
-        public string MainPhoto { get; set; }
+        public List<PromoImages> Images { get; set; }
         public string Address { get; set; }
     }
 }

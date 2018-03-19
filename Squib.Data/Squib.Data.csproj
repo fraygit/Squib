@@ -63,6 +63,7 @@
     <Compile Include="Interface\IUserRepository.cs" />
     <Compile Include="Model\Organisation.cs" />
     <Compile Include="Model\Promo.cs" />
+    <Compile Include="Model\PromoImages.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\OrganisationRepository.cs" />
