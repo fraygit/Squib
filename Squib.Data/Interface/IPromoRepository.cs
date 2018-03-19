@@ -1,4 +1,5 @@
-﻿using Squib.Data.Model;
+﻿using MongoDB.Bson;
+using Squib.Data.Model;
 using Squib.Data.Service;
 using System;
 using System.Collections.Generic;
@@ -10,5 +11,6 @@ namespace Squib.Data.Interface
 {
     public interface IPromoRepository : IEntityService<Promo>
     {
+        Task<List<Promo>> GetByOrg(ObjectId organisationId);
     }
 }

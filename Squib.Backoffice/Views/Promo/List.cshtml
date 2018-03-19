@@ -1,0 +1,62 @@
+﻿@model List<Squib.Backoffice.Models.ResPromoList>
+
+@{
+    ViewBag.Title = "List";
+}
+
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="view-header">
+            <div class="header-icon">
+                <i class="pe page-header-icon pe-7s-note2"></i>
+            </div>
+            <div class="header-title">
+                <h3>List of Promo</h3>
+                <small>
+                    List of your promos
+                </small>
+            </div>
+        </div>
+        <hr>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-filled">
+            <div class="panel-heading">
+                Promos
+            </div>
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table class="table table-hover table-striped">
+                        <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Organisation</th>
+                                <th>From</th>
+                                <th>To</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var promo in Model) 
+                            { 
+                                <tr>
+                                    <td><a href='@Url.Action("Create", "Promo", new { id = promo.Id.ToString() })'>@promo.Title</a></td>
+                                    <td>@promo.OrganisationName</td>
+                                    <td>@promo.From</td>
+                                    <td>@promo.To</td>
+                                    <td>Active</td>
+                                </tr>
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
