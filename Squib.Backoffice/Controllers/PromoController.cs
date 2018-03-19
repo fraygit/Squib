@@ -5,6 +5,7 @@ using Squib.Data.Interface;
 using Squib.Data.Model;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -49,6 +50,24 @@ namespace Squib.Backoffice.Controllers
 
             return View(model);
         }
+
+        [Authorize]
+        [HttpPost]
+        public async Task<JsonResult> UploadImage()
+        {
+            var promoId = Request["PromoId"].ToString();
+            if (Request.Files.Count > 0)
+            {
+                for (var i = 0; i < Request.Files.Count; i++)
+                {
+                    var file = Request.Files[i];
+                    var filename = Path.GetFileName(file.FileName);
+                    file.SaveAs(Server.MapPath("~/TempUpload/" + filename));
+                }
+            }
+            return Json("");
+        }
+
 
         [Authorize]
         [HttpPost]
