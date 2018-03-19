@@ -7,6 +7,7 @@ namespace Squib.Backoffice.Models
 {
     public class ReqCreatePromo
     {
+        public string Id { get; set; }
         public string OrganisationId { get; set; }
         public string Title { get; set; }
         public string Category { get; set; }

@@ -18,6 +18,12 @@
     <link rel="stylesheet" href="/styles/stroke-icons/style.css" />
     <link rel="stylesheet" href="/styles/style.css">
     <link href="/vendor/summernote/dist/summernote.css" rel="stylesheet" />
+    <link href="/vendor/datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+    <style type="text/css">
+        strong {
+            color:red!important;
+        }
+    </style>
 </head>
 <body>
     <!-- Wrapper-->
@@ -45,9 +51,16 @@
     <script src="/vendor/flot/jquery.flot.min.js"></script>
     <script src="/vendor/flot/jquery.flot.resize.min.js"></script>
     <script src="/vendor/flot/jquery.flot.spline.js"></script>
+
+    <script src="/vendor/moment/min/moment.min.js"></script>
+    <script src="/vendor/datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+
     <!-- App scripts -->
     <script src="/scripts/luna.js"></script>
     <script src="/vendor/summernote/dist/summernote.min.js"></script>
+
+    <script src="/scripts/Custom/common.js"></script>
+    
     @RenderSection("scripts", required: false)
 
     <script>

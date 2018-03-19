@@ -150,6 +150,7 @@
     <Compile Include="Models\CreatePromoViewModel.cs" />
     <Compile Include="Models\JsonGenericResult.cs" />
     <Compile Include="Models\LoginModel.cs" />
+    <Compile Include="Models\ReqCreatePromo.cs" />
     <Compile Include="Models\ReqLogin.cs" />
     <Compile Include="Models\ReqRegisterUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -184,6 +185,10 @@
     <Content Include="vendor\datamaps\datamaps.world.min.js" />
     <Content Include="vendor\datatables\datatables.min.css" />
     <Content Include="vendor\datatables\datatables.min.js" />
+    <Content Include="vendor\datetimepicker\css\bootstrap-datetimepicker-standalone.css" />
+    <Content Include="vendor\datetimepicker\css\bootstrap-datetimepicker.css" />
+    <Content Include="vendor\datetimepicker\css\bootstrap-datetimepicker.min.css" />
+    <Content Include="vendor\datetimepicker\js\bootstrap-datetimepicker.min.js" />
     <Content Include="vendor\flot\jquery.flot.min.js" />
     <Content Include="vendor\flot\jquery.flot.pie.min.js" />
     <Content Include="vendor\flot\jquery.flot.resize.min.js" />

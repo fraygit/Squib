@@ -1,4 +1,5 @@
-﻿using Squib.Backoffice.Models;
+﻿using MongoDB.Bson;
+using Squib.Backoffice.Models;
 using Squib.Backoffice.Services;
 using Squib.Data.Interface;
 using Squib.Data.Model;
@@ -30,9 +31,18 @@ namespace Squib.Backoffice.Controllers
         }
 
         [Authorize]
-        public async Task<ActionResult> Create()
+        public async Task<ActionResult> Create(string id)
         {
             var model = new CreatePromoViewModel();
+
+            if (!string.IsNullOrEmpty(id))
+            {
+                model.Promo = await _promoRepository.Get(id);
+            }
+            else
+            {
+                model.Promo = new Promo();
+            }
 
             var orgService = new OrganisationService(_organisationRepository, _userRepository);
             model.Organisations = await orgService.Get(User.Identity.Name);
@@ -42,13 +52,48 @@ namespace Squib.Backoffice.Controllers
 
         [Authorize]
         [HttpPost]
-        public async Task<JsonResult> SaveNew(ReqCreatePromo request)
+        public async Task<JsonResult> Save(ReqCreatePromo request)
         {
+            if (!string.IsNullOrEmpty(request.OrganisationId))
+            {
+                var newPromo = new Promo
+                {
+                    Title = request.Title,
+                    Price = request.Price,
+                    Category = request.Category,
+                    From = request.From,
+                    To = request.To,
+                    Description = request.Details,
+                    MaxNumberOfVoucher = request.Max,
+                    OrganisationId = ObjectId.Parse(request.OrganisationId)
+                };
+
+                ObjectId promoId;
+
+                ObjectId.TryParse(request.Id, out promoId);
+                if (promoId != ObjectId.Empty)
+                {
+                    newPromo.Id = promoId;
+                    await _promoRepository.Update(request.Id, newPromo);
+                }
+                else
+                {
+                    newPromo.IsPublished = false;
+                    await _promoRepository.CreateSync(newPromo);
+                }
+
+                return Json(new JsonGenericResult
+                {
+                    IsSuccess = true,
+                    Result = newPromo.Id.ToString()
+                });
+
+            }
 
             return Json(new JsonGenericResult
             {
                 IsSuccess = false,
-                Message = "System error."
+                Message = "Please select an organisation."
             });
         }
 

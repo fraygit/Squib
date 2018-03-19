@@ -17,6 +17,8 @@
     </div>
 </div>
 
+<div style="display:none;" id="PageDetails" data-promo-id="@Model.Promo.Id.ToString()" data-promo-from="@Model.Promo.From" data-promo-to="@Model.Promo.To" data-promo-description="@Model.Promo.Description"></div>
+
 <div class="row">
     <div class="col-lg-12">
         <div class="panel panel-filled">
@@ -28,7 +30,14 @@
                         <select id="ddOrganisation" class="form-control">
                             @foreach (var org in Model.Organisations)
                             {
-                                <option value="@org.Id.ToString()">@org.Name</option>
+                                if (org.Id.ToString() == Model.Promo.OrganisationId.ToString())
+                                {
+                                    <option value="@org.Id.ToString()" selected>@org.Name</option>
+                                }
+                                else 
+                                { 
+                                    <option value="@org.Id.ToString()">@org.Name</option>
+                                }
                             }
                         </select>
                     </div>
@@ -36,35 +45,45 @@
                 <div class="col-lg-6">
                     <div class="form-group">
                         <label for="exampleInputName">Title</label> 
-                        <input type="text" class="form-control" id="txtTitle" placeholder="Promo title">
+                        <input type="text" class="form-control" id="txtTitle" placeholder="Promo title" value="@Model.Promo.Title">
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="form-group">
                         <label for="exampleInputName">Category</label>
-                        <select id="ddOrganisation" class="form-control">
-                            <option value="Food">Restaurant, Bar, Cafe</option>
-                            <option value="Experience">Experience</option>
-                            <option value="Travel">Hotel and Travel</option>
+                        <select id="ddCategory" class="form-control">
+                            <option value="Food" @(Model.Promo.Category == "Food" ? "selected" : "")>Restaurant, Bar, Cafe</option>
+                            <option value="Experience" @(Model.Promo.Category == "Experience" ? "selected" : "")>Experience</option>
+                            <option value="Travel" @(Model.Promo.Category == "Travel" ? "selected" : "")>Hotel and Travel</option>
                         </select>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="form-group">
                         <label for="exampleInputName">Price</label>
-                        <input type="text" class="form-control" id="txtPrice" placeholder="How much does each voucher cost?">
+                        <input type="text" class="form-control" id="txtPrice" placeholder="How much does each voucher cost?" value="@Model.Promo.Price">
                     </div>
                 </div>
                 <div class="col-lg-3">
                     <div class="form-group">
                         <label for="exampleInputName">Date Rage</label>
-                        <input type="text" class="form-control" id="txtFrom" placeholder="Start promo from">
+                        <div class='input-group date' id='txtFrom' placeholder="Start promo from">
+                            <input type='text' class="form-control" />
+                            <span class="input-group-addon">
+                                <i class="fa fa-calendar-o btn-accent"></i>
+                            </span>
+                        </div>
                     </div>
                 </div>
                 <div class="col-lg-3">
                     <div class="form-group">
                         <label style="width:100%">&nbsp;</label>
-                        <input type="text" class="form-control" id="txtTo" placeholder="End promo to">
+                        <div class='input-group date' id='txtTo'>
+                            <input type='text' class="form-control" placeholder="End promo to"/>
+                            <span class="input-group-addon">
+                                <i class="fa fa-calendar-o btn-accent"></i>
+                            </span>
+                        </div>
                     </div>
                 </div>
                 <div class="col-lg-2 text-center">
@@ -74,7 +93,7 @@
                 <div class="col-lg-4">
                     <div class="form-group">
                         <label for="exampleInputName">Max number of voucher</label>
-                        <input type="number" class="form-control" id="txtNumVoucher" placeholder="Limit promo">
+                        <input type="number" class="form-control" id="txtNumVoucher" placeholder="Limit promo" value="@Model.Promo.MaxNumberOfVoucher">
                     </div>
                 </div>
                 <div class="col-lg-12">
@@ -91,7 +110,7 @@
                 </div>
             </div>
             <div class="panel-footer">
-                <button class="btn btn-w-md btn-accent">Save</button>
+                <button class="btn btn-w-md btn-accent" id="btnSave">Save</button>
                 <button class="btn btn-w-md btn-primary">Preview</button>
             </div>
         </div>
@@ -111,6 +130,92 @@
                 ]
             };
             $("#txtDetails").summernote(options);
+
+            var desc = $("#PageDetails").data("promo-description");
+            if (!isBlank(desc))
+            {                
+                $("#txtDetails").summernote("code", desc);
+            }
+
+            var from = $("#PageDetails").data("promo-from");
+            var to = $("#PageDetails").data("promo-to");
+
+            if (!isBlank(from)) {
+                from = from + ' UTC';
+                $('#txtFrom').datetimepicker({
+                    format: 'D/MM/YYYY',
+                    useCurrent: true,
+                    minDate: new Date(),
+                    date: new Date(from)
+                });
+            }
+            else {
+                $('#txtFrom').datetimepicker({
+                    format: 'D/MM/YYYY',
+                    useCurrent: true,
+                    minDate: new Date()
+                });
+            }
+
+            if (!isBlank(to)) {
+                to = to + ' UTC';
+                $('#txtTo').datetimepicker({
+                    format: 'D/MM/YYYY',
+                    useCurrent: true,
+                    minDate: new Date(),
+                    date: new Date(to)
+                });
+            }
+            else {
+                $('#txtTo').datetimepicker({
+                    format: 'D/MM/YYYY',
+                    useCurrent: true,
+                    minDate: new Date()
+                });
+            }
+
+
+
+            
+            $("#btnSave").click(function () {
+
+                var data = {
+                    Id: $("#PageDetails").data("promo-id"),
+                    OrganisationId: $("#ddOrganisation").val(),
+                    Title: $("#txtTitle").val(),
+                    Category: $("#ddCategory").val(),
+                    Price: isBlank($("#txtPrice").val()) ? 0 : parseFloat($("#txtPrice").val()),
+                    From: $("#txtFrom").data("DateTimePicker").date(),
+                    To: $("#txtTo").data("DateTimePicker").date(),
+                    Max: isBlank($("#txtNumVoucher").val()) ? 0 : parseInt($("#txtNumVoucher").val()),
+                    Details: $("#txtDetails").summernote("code")
+                };
+
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("Save", "Promo")",
+                    contentType: "application/json",
+                    dataType: "json",
+                    data: JSON.stringify(data),
+                    success: function (d) {
+                        if (d.IsSuccess == true) {
+                            AlertSuccess("Successfully saved details!");
+                            setTimeout(function () {
+                                document.location.href = "/promo/create/" + d.Result;
+                            }, 4000);
+                        }
+                        else {
+                            AlertError('Error registering user, ' + d.Message);
+                        }
+                    },
+                    error: function (xhr, textStatus, errorThrown) {
+                        AlertError('Oopps! We are experiencing some problem. Please try again later.');
+                    }
+                });
+            });
+
+            
+
         });
     </script>
 }

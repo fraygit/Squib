@@ -9,5 +9,6 @@ namespace Squib.Backoffice.Models
     public class CreatePromoViewModel
     {
         public List<Organisation> Organisations { get; set; }
+        public Promo Promo { get; set; }
     }
 }
