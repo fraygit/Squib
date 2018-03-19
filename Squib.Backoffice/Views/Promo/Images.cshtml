@@ -1,0 +1,9 @@
+﻿@model List<Squib.Data.Model.PromoImages>
+
+<div class="row">
+    @foreach (var img in Model) { 
+        <div class="col-lg-3">
+            @img.Path
+        </div>
+    }
+</div>

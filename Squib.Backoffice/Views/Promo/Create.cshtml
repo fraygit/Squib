@@ -134,9 +134,14 @@
     <script type="text/javascript">
         $(function () {
 
+            var ShowImages = function () {
+                $("#pnlImages").load('@Url.Action("Images", "Promo", new { id = @Model.Promo.Id.ToString() })');
+            };
+
             var promoId = $("#PageDetails").data("promo-id");
             if (promoId != '000000000000000000000000') {
                 $("#pnlImageUpload").slideDown("slow");
+                ShowImages();
             }
 
             var options = {
@@ -152,7 +157,7 @@
 
             var desc = $("#PageDetails").data("promo-description");
             if (!isBlank(desc))
-            {                
+            {
                 $("#txtDetails").summernote("code", desc);
             }
 
@@ -192,7 +197,7 @@
                     minDate: new Date()
                 });
             }
-            
+
             $("#btnSave").click(function () {
 
                 var data = {
@@ -246,11 +251,12 @@
                     xhr.onreadystatechange = function () {
                         if (xhr.readyState == 4 && xhr.status == 200) {
                             $("#frmUpload")[0].reset();
+                            ShowImages();
                         }
                     }
                 }
             });
-            
+
 
         });
     </script>

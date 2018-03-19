@@ -51,6 +51,16 @@ namespace Squib.Backoffice.Controllers
             return View(model);
         }
 
+        public async Task<PartialViewResult> Images(string id)
+        {
+            Promo model = new Promo();
+            if (!string.IsNullOrEmpty(id))
+            {
+                model = await _promoRepository.Get(id);
+            }
+            return PartialView(model.Images);
+        }
+
         [Authorize]
         [HttpPost]
         public async Task<JsonResult> UploadImage()
