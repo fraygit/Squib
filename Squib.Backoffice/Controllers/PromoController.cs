@@ -57,6 +57,34 @@ namespace Squib.Backoffice.Controllers
         }
 
         [Authorize]
+        public async Task<JsonResult> PromoList()
+        {
+            var user = await _userRepository.GetUser(User.Identity.Name);
+            var promos = new List<ResPromoList>();
+            foreach (var org in user.Organisations)
+            {
+                var organisation = await _organisationRepository.Get(org.ToString());
+                var orgPromos = await _promoRepository.GetByOrg(org);
+                foreach (var promo in orgPromos)
+                {
+                    promos.Add(new ResPromoList
+                    {
+                        Id = promo.Id,
+                        Category = promo.Category,
+                        Title = promo.Title,
+                        From = promo.From,
+                        To = promo.To,
+                        OrganisationName = organisation.Name,
+                        MaxNumberOfVoucher = promo.MaxNumberOfVoucher
+                    });
+                }
+            }
+            return Json(promos, JsonRequestBehavior.AllowGet);
+        }
+
+
+
+        [Authorize]
         public async Task<ActionResult> Create(string id)
         {
             var model = new CreatePromoViewModel();

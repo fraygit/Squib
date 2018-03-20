@@ -30,29 +30,17 @@
             </div>
             <div class="panel-body">
                 <div class="table-responsive">
-                    <table class="table table-hover table-striped" id="tblPromoList">
+                    <table class="table table-hover table-striped" id="tblList">
                         <thead>
                             <tr>
                                 <th>Title</th>
-                                <th>Organisation</th>
+                                <th>Shop</th>
                                 <th>From</th>
                                 <th>To</th>
+                                <th>Max</th>
                                 <th>Status</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            @foreach (var promo in Model) 
-                            { 
-                                <tr>
-                                    <td><a href='@Url.Action("Create", "Promo", new { id = promo.Id.ToString() })'>@promo.Title</a></td>
-                                    <td>@promo.OrganisationName</td>
-                                    <td>@promo.From</td>
-                                    <td>@promo.To</td>
-                                    <td>Active</td>
-                                </tr>
-                            }
-
-                        </tbody>
                     </table>
                 </div>
 
@@ -61,11 +49,37 @@
     </div>
 </div>
 
+
 @section Scripts{
     <script type="text/javascript">
         $(function () {
 
-            $("#tblPromoList").DataTable();
+           //$("#tblPromoList").DataTable();
+
+            $('#tblList').DataTable({
+                "ajax": { url: '@Url.Action("PromoList", "Promo")', "dataSrc": "" },
+                "columns": [
+                    { "data": "Title", 
+                    "render": function (d, t, r) {
+                        var id = ObjectIdToString(r.Id);
+                        return "<a href='/Promo/Create/" + id + "'>" + d + "</a>";
+                    }},
+                    { "data": "OrganisationName" },
+                    { "data": "From", 
+                    "render": function (d) {
+                        var date = ToJavaScriptDate(d);
+                        return moment(d).format("d MMM YYYY");
+                        }},
+                    { "data": "To", 
+                    "render": function (d) {
+                        var date = ToJavaScriptDate(d);
+                        return moment(d).format("d MMM YYYY");
+                    }
+                    },
+                    { "data": "MaxNumberOfVoucher" },
+                    { "data": "Category" }
+                ]
+            });
 
         });
     </script>
