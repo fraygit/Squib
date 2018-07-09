@@ -1,4 +1,5 @@
 ﻿using Squib.Backoffice.Services;
+using Squib.Shared.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;

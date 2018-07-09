@@ -34,8 +34,8 @@
                                 {
                                     <option value="@org.Id.ToString()" selected>@org.Name</option>
                                 }
-                                else 
-                                { 
+                                else
+                                {
                                     <option value="@org.Id.ToString()">@org.Name</option>
                                 }
                             }
@@ -44,8 +44,20 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="form-group">
-                        <label for="exampleInputName">Title</label> 
+                        <label for="exampleInputName">Title</label>
                         <input type="text" class="form-control" id="txtTitle" placeholder="Promo title" value="@Model.Promo.Title">
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="form-group">
+                        <label for="exampleInputName">Short Description</label>
+                        <input type="text" class="form-control" id="txtShortDescription" placeholder="Promo title" value="@Model.Promo.ShortDescription">
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="form-group">
+                        <label for="exampleInputName">Image Text</label>
+                        <input type="text" class="form-control" id="txtImageText" placeholder="Promo title" value="@Model.Promo.ImageText">
                     </div>
                 </div>
                 <div class="col-lg-6">
@@ -58,9 +70,15 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-lg-6">
+                <div class="col-lg-3">
                     <div class="form-group">
-                        <label for="exampleInputName">Price</label>
+                        <label for="exampleInputName">Original Price</label>
+                        <input type="text" class="form-control" id="txtOriginalPrice" placeholder="" value="@Model.Promo.OriginalPrice">
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="form-group">
+                        <label for="exampleInputName">Promo Price</label>
                         <input type="text" class="form-control" id="txtPrice" placeholder="How much does each voucher cost?" value="@Model.Promo.Price">
                     </div>
                 </div>
@@ -79,7 +97,7 @@
                     <div class="form-group">
                         <label style="width:100%">&nbsp;</label>
                         <div class='input-group date' id='txtTo'>
-                            <input type='text' class="form-control" placeholder="End promo to"/>
+                            <input type='text' class="form-control" placeholder="End promo to" />
                             <span class="input-group-addon">
                                 <i class="fa fa-calendar-o btn-accent"></i>
                             </span>
@@ -271,7 +289,10 @@
                     Id: $("#PageDetails").data("promo-id"),
                     OrganisationId: $("#ddOrganisation").val(),
                     Title: $("#txtTitle").val(),
+                    ShortDescription: $("#txtShortDescription").val(),
+                    ImageText: $("#txtImageText").val(),
                     Category: $("#ddCategory").val(),
+                    OriginalPrice: isBlank($("#txtOriginalPrice").val()) ? 0 : parseFloat($("#txtOriginalPrice").val()),
                     Price: isBlank($("#txtPrice").val()) ? 0 : parseFloat($("#txtPrice").val()),
                     From: $("#txtFrom").data("DateTimePicker").date(),
                     To: $("#txtTo").data("DateTimePicker").date(),

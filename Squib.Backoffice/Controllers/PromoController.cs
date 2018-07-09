@@ -3,6 +3,8 @@ using Squib.Backoffice.Models;
 using Squib.Backoffice.Services;
 using Squib.Data.Interface;
 using Squib.Data.Model;
+using Squib.Shared.Models;
+using Squib.Shared.Services;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -266,7 +268,7 @@ namespace Squib.Backoffice.Controllers
             {
                 IsSuccess = false,
                 Message = "Error publishing promo."
-            });
+            }); 
         }
 
 
@@ -279,7 +281,10 @@ namespace Squib.Backoffice.Controllers
                 var newPromo = new Promo
                 {
                     Title = request.Title,
+                    OriginalPrice = request.OriginalPrice,
                     Price = request.Price,
+                    ShortDescription = request.ShortDescription,
+                    ImageText = request.ImageText,
                     Category = request.Category,
                     From = request.From,
                     To = request.To,

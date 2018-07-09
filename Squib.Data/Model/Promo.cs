@@ -14,7 +14,10 @@ namespace Squib.Data.Model
         public bool IsPublished { get; set; }
         public string Category { get; set; }
         public string Title { get; set; }
+        public string ShortDescription { get; set; }
+        public string ImageText { get; set; }
         public decimal Price { get; set; }
+        public decimal OriginalPrice { get; set; }
         public DateTime From { get; set; }
         public DateTime To { get; set; }
         public int MaxNumberOfVoucher { get; set; }
