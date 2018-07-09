@@ -42,6 +42,7 @@ namespace Squib.Backoffice.Controllers
                 var orgPromos = await _promoRepository.GetByOrg(org);
                 foreach (var promo in orgPromos)
                 {
+                    var status = promo.Status;
                     promos.Add(new ResPromoList
                     {
                         Id = promo.Id,
@@ -49,11 +50,52 @@ namespace Squib.Backoffice.Controllers
                         Title = promo.Title,
                         From = promo.From,
                         To = promo.To,
-                        OrganisationName = organisation.Name
+                        OrganisationName = organisation.Name,
+                        StatusText = "Draft"
                     });
                 }
             }
             return View(promos);
+        }
+
+        [Authorize]
+        public async Task<ActionResult> PromoListForApproval()
+        {
+            var user = await _userRepository.GetUser(User.Identity.Name);
+            if (!user.IsAdmin)
+            {
+                Redirect("/");
+            }
+            return View();
+        }
+
+        [Authorize]
+        public async Task<JsonResult> PromoListAll()
+        {
+            var user = await _userRepository.GetUser(User.Identity.Name);
+            var promos = new List<ResPromoList>();
+            var allPromos = await _promoRepository.ListAll();
+            foreach (var promo in allPromos)
+            {
+                if (promo.Status == "Submitted for publishing")
+                {
+                    var organisation = await _organisationRepository.Get(promo.OrganisationId.ToString());
+                    var statusText = promo.Status == null ? "Draft" : promo.Status;
+                    promos.Add(new ResPromoList
+                    {
+                        Id = promo.Id,
+                        Category = promo.Category,
+                        Title = promo.Title,
+                        From = promo.From,
+                        To = promo.To,
+                        OrganisationName = organisation.Name,
+                        MaxNumberOfVoucher = promo.MaxNumberOfVoucher,
+                        StatusText = statusText
+                    });
+                }
+            }
+
+            return Json(promos, JsonRequestBehavior.AllowGet);
         }
 
         [Authorize]
@@ -67,6 +109,7 @@ namespace Squib.Backoffice.Controllers
                 var orgPromos = await _promoRepository.GetByOrg(org);
                 foreach (var promo in orgPromos)
                 {
+                    var statusText = promo.Status == null ? "Draft" : promo.Status;
                     promos.Add(new ResPromoList
                     {
                         Id = promo.Id,
@@ -75,14 +118,14 @@ namespace Squib.Backoffice.Controllers
                         From = promo.From,
                         To = promo.To,
                         OrganisationName = organisation.Name,
-                        MaxNumberOfVoucher = promo.MaxNumberOfVoucher
+                        MaxNumberOfVoucher = promo.MaxNumberOfVoucher,
+                        StatusText = statusText
                     });
                 }
             }
             return Json(promos, JsonRequestBehavior.AllowGet);
         }
-
-
+        
 
         [Authorize]
         public async Task<ActionResult> Create(string id)
@@ -100,6 +143,9 @@ namespace Squib.Backoffice.Controllers
 
             var orgService = new OrganisationService(_organisationRepository, _userRepository);
             model.Organisations = await orgService.Get(User.Identity.Name);
+
+            var user = await _userRepository.GetUser(User.Identity.Name);
+            model.IsAdministrator = user.IsAdmin;
 
             return View(model);
         }
@@ -159,6 +205,70 @@ namespace Squib.Backoffice.Controllers
             return Json("");
         }
 
+        [Authorize]
+        [HttpPost]
+        public async Task<JsonResult> Publish(string promoId)
+        {
+            if (!string.IsNullOrEmpty(promoId))
+            {
+
+                ObjectId actualPromoId;
+                ObjectId.TryParse(promoId, out actualPromoId);
+                if (actualPromoId != ObjectId.Empty)
+                {
+                    var existingPromo = await _promoRepository.Get(promoId);
+                    existingPromo.Status = "Published";
+                    existingPromo.IsPublished = true;
+                    await _promoRepository.Update(promoId, existingPromo);
+                }
+
+                return Json(new JsonGenericResult
+                {
+                    IsSuccess = true,
+                    Result = promoId.ToString()
+                });
+
+            }
+
+            return Json(new JsonGenericResult
+            {
+                IsSuccess = false,
+                Message = "Error publishing promo."
+            });
+        }
+
+
+        [Authorize]
+        [HttpPost]
+        public async Task<JsonResult> SubmitForPublish(string promoId)
+        {
+            if (!string.IsNullOrEmpty(promoId))
+            {
+
+                ObjectId actualPromoId;
+                ObjectId.TryParse(promoId, out actualPromoId);
+                if (actualPromoId != ObjectId.Empty)
+                {
+                    var existingPromo = await _promoRepository.Get(promoId);
+                    existingPromo.Status = "Submitted for publishing";
+                    await _promoRepository.Update(promoId, existingPromo);
+                }
+
+                return Json(new JsonGenericResult
+                {
+                    IsSuccess = true,
+                    Result = promoId.ToString()
+                });
+
+            }
+
+            return Json(new JsonGenericResult
+            {
+                IsSuccess = false,
+                Message = "Error publishing promo."
+            });
+        }
+
 
         [Authorize]
         [HttpPost]
@@ -184,11 +294,14 @@ namespace Squib.Backoffice.Controllers
                 if (promoId != ObjectId.Empty)
                 {
                     newPromo.Id = promoId;
+                    var existingPromo = await _promoRepository.Get(request.Id);
+                    newPromo.Images = existingPromo.Images;
                     await _promoRepository.Update(request.Id, newPromo);
                 }
                 else
                 {
                     newPromo.IsPublished = false;
+                    newPromo.Status = "Draft";
                     await _promoRepository.CreateSync(newPromo);
                 }
 

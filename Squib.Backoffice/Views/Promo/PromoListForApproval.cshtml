@@ -33,6 +33,7 @@
                     <table class="table table-hover table-striped" id="tblList">
                         <thead>
                             <tr>
+                                <th>Organisation</th>
                                 <th>Title</th>
                                 <th>Shop</th>
                                 <th>From</th>
@@ -58,20 +59,21 @@
            //$("#tblPromoList").DataTable();
 
             $('#tblList').DataTable({
-                "ajax": { url: '@Url.Action("PromoList", "Promo")', "dataSrc": "" },
+                "ajax": { url: '@Url.Action("PromoListAll", "Promo")', "dataSrc": "" },
                 "columns": [
-                    { "data": "Title", 
+                    { "data": "OrganisationName" },
+                    { "data": "Title",
                     "render": function (d, t, r) {
                         var id = ObjectIdToString(r.Id);
                         return "<a href='/Promo/Create/" + id + "'>" + d + "</a>";
                     }},
                     { "data": "OrganisationName" },
-                    { "data": "From", 
+                    { "data": "From",
                     "render": function (d) {
                         var date = ToJavaScriptDate(d);
                         return moment(d).format("d MMM YYYY");
                         }},
-                    { "data": "To", 
+                    { "data": "To",
                     "render": function (d) {
                         var date = ToJavaScriptDate(d);
                         return moment(d).format("d MMM YYYY");

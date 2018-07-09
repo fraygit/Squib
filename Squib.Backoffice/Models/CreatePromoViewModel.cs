@@ -10,5 +10,6 @@ namespace Squib.Backoffice.Models
     {
         public List<Organisation> Organisations { get; set; }
         public Promo Promo { get; set; }
+        public bool IsAdministrator { get; set; }
     }
 }

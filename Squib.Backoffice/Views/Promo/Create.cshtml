@@ -123,8 +123,23 @@
                 </div>
             </div>
             <div class="panel-footer">
+
+                @if (Model.Promo.Status != "Submitted for publishing" && Model.Promo.Status != "Published") 
+                {
                 <button class="btn btn-w-md btn-accent" id="btnSave">Save</button>
-                <button class="btn btn-w-md btn-primary">Preview</button>
+                }
+                @if (Model.Promo.Id != MongoDB.Bson.ObjectId.Empty) { 
+                    <button class="btn btn-w-md btn-primary">Preview</button>
+                }
+                @if (Model.Promo.Id != MongoDB.Bson.ObjectId.Empty && Model.Promo.Status != "Submitted for publishing" && Model.Promo.Status != "Published")
+                {
+                    <button class="btn btn-w-md btn-success" id="btnSubmitPublish">Submit for publishing</button>
+                }
+                
+                @if (Model.IsAdministrator)
+                {
+                    <button class="btn btn-w-md btn-danger" id="btnApprovePublishing">Approve Publishing</button>
+                }
             </div>
         </div>
     </div>
@@ -197,6 +212,58 @@
                     minDate: new Date()
                 });
             }
+
+            $("#btnApprovePublishing").click(function () {
+
+                if (confirm("Are you sure you want to publish this promo?")) {
+                    $.ajax({
+                        type: "POST",
+                        url: "@Url.Action("Publish", "Promo", new { promoId = Model.Promo.Id.ToString() })",
+                        contentType: "application/json",
+                        dataType: "json",
+                        success: function (d) {
+                            if (d.IsSuccess == true) {
+                                AlertSuccess("Successfully submitted for publishing!");
+                                setTimeout(function () {
+                                    document.location.href = "/";
+                                }, 4000);
+                            }
+                            else {
+                                AlertError('Error occured, ' + d.Message);
+                            }
+                        },
+                        error: function (xhr, textStatus, errorThrown) {
+                            AlertError('Oopps! We are experiencing some problem. Please try again later.');
+                        }
+                    });
+                }
+            });
+
+            $("#btnSubmitPublish").click(function () {
+
+                if (confirm("Are you sure you want to submit for publishing? You won't be able to edit the details after submission.")) {
+                    $.ajax({
+                        type: "POST",
+                        url: "@Url.Action("SubmitForPublish", "Promo", new { promoId = Model.Promo.Id.ToString() })",
+                        contentType: "application/json",
+                        dataType: "json",
+                        success: function (d) {
+                            if (d.IsSuccess == true) {
+                                AlertSuccess("Successfully submitted for publishing!");
+                                setTimeout(function () {
+                                    document.location.href = "/";
+                                }, 4000);
+                            }
+                            else {
+                                AlertError('Error occured, ' + d.Message);
+                            }
+                        },
+                        error: function (xhr, textStatus, errorThrown) {
+                            AlertError('Oopps! We are experiencing some problem. Please try again later.');
+                        }
+                    });
+                }
+            });
 
             $("#btnSave").click(function () {
 

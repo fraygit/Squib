@@ -1,6 +1,9 @@
-﻿using System;
+﻿using Squib.Backoffice.Models;
+using Squib.Data.Interface;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -10,6 +13,14 @@ namespace Squib.Backoffice.Controllers
     {
         //
         // GET: /Partial/
+
+        private IUserRepository _userRepository;
+
+        public PartialController(IUserRepository _userRepository)
+        {
+            this._userRepository = _userRepository;
+        }
+
 
         public ActionResult Index()
         {
@@ -23,7 +34,10 @@ namespace Squib.Backoffice.Controllers
 
         public ActionResult Navigation()
         {
-            return PartialView();
+            var user = Task.Run(() => _userRepository.GetUser(User.Identity.Name)).Result;
+            var model = new ResNavigation();
+            model.User = user;
+            return PartialView(model);
         }
 
     }

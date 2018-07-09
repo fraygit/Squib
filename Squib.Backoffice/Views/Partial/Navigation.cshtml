@@ -1,16 +1,24 @@
-﻿<aside class="navigation">
+﻿@model Squib.Backoffice.Models.ResNavigation
+@{
+    var currentPage = HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString().ToLower();
+
+    var dashboard = currentPage == "dashboard" ? "active" : "";
+    var promo = currentPage == "promo" ? "active" : "";
+}
+
+<aside class="navigation">
     <nav>
         <ul class="nav luna-nav">
             <li class="nav-category">
                 Main
             </li>
-            <li class="active">
-                <a href="index.html">Dashboard</a>
+            <li class="@dashboard">
+                <a href="/">Dashboard</a>
             </li>
             <li>
                 <a href="index.html">Redeem Voucher</a>
             </li>
-            <li>
+            <li class="@promo">
                 <a href="#uielements" data-toggle="collapse" aria-expanded="false">
                     My Promo<span class="sub-nav-icon"> <i class="stroke-arrow"></i> </span>
                 </a>
@@ -19,6 +27,17 @@
                     <li><a href="/promo/create">Create</a></li>
                 </ul>
             </li>
+            @if (Model.User.IsAdmin) 
+            { 
+                <li class="">
+                    <a href="#promos" data-toggle="collapse" aria-expanded="false">
+                        Admin<span class="sub-nav-icon"> <i class="stroke-arrow"></i> </span>
+                    </a>
+                    <ul id="promos" class="nav nav-second collapse">
+                        <li><a href="/promo/PromoListForApproval">For Approval</a></li>
+                    </ul>
+                </li>
+            }
             <li>
                 <a href="/login/logout">
                     Logout

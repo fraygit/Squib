@@ -20,5 +20,6 @@ namespace Squib.Data.Model
         public string VerificationCode { get; set; }
         public string CurrentOrganisation { get; set; }
         public List<ObjectId> Organisations { get; set; }
+        public bool IsAdmin { get; set; }
     }
 }

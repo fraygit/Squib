@@ -6,9 +6,8 @@ using System.Web;
 
 namespace Squib.Backoffice.Models
 {
-    public class ResPromoList : Promo
+    public class ResNavigation
     {
-        public string OrganisationName { get; set; }
-        public string StatusText { get; set; }
+        public User User { get; set; }
     }
 }
