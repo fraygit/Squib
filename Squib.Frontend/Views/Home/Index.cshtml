@@ -1,0 +1,393 @@
+﻿@model Squib.Frontend.Models.ResponseHome
+@{
+    ViewBag.Title = "Home Page";
+}
+
+
+<!-- /.search form -->
+<div class="slider">
+    <div class="container">
+        <div class="row">
+            <div id="grid-slider" class="flexslider">
+                <ul class="slides">
+                    @foreach (var item in Model.Promos)
+                    {
+                        <li>
+                            <div class="col-sm-7 col-lg-8 omega">
+                                @if (item.Images != null)
+                                {
+                                    if (item.Images.Any())
+                                    {
+                                        <article class="bg-image entry-lg" data-image-src="@Url.Action("DownloadFileByPath", "File", new { path = item.Images.FirstOrDefault().Path, filename = item.Images.FirstOrDefault().Filename, isEmbed = false})">
+                                            <div class="deal-short-entry bg-blue">
+                                                <p>
+                                                    @item.ImageText
+                                                </p>
+                                            </div>
+                                        </article>
+                                    }
+                                }
+                                else
+                                {
+                                    <article class="bg-image entry-lg" data-image-src="http://placehold.it/900x600">
+                                        <div class="deal-short-entry bg-blue">
+                                            <p>
+                                                @item.ImageText
+                                            </p>
+                                        </div>
+                                    </article>
+                                }
+                            </div>
+                            <div class="col-sm-5 col-lg-4 alpha entry-lg">
+                                <div class="buyPanel animated fadeInLeft bg-white Aligner shadow">
+                                    <div class="content">
+                                        <div class="deal-content">
+                                            <h3>
+                                                @item.Title
+                                            </h3>
+                                            <p>
+                                                @item.ShortDescription
+                                            </p>
+                                        </div>
+                                        <div class="price text-center">
+                                            <h1>
+                                                $@item.Price
+                                            </h1>
+                                        </div>
+                                        <div class="buy-now mBtm-30">
+                                            <a class="btn btn-primary btn-lg btn-raised ripple-effect btn-block" data-toggle="modal" data-target="#myModal">
+                                                BUY NOW
+                                                <span class="link animate">
+                                                </span>
+                                            </a>
+                                        </div>
+                                        <div class="dealAttributes">
+                                            <div class="valueInfo bg-light shadow">
+                                                <div class="value">
+                                                    <p class="value">
+                                                        $2,475
+                                                    </p>
+                                                    <p class="text">
+                                                        Value
+                                                    </p>
+                                                </div>
+                                                <div class="discount">
+                                                    <p class="value">
+                                                        59%
+                                                    </p>
+                                                    <p class="text">
+                                                        Discount
+                                                    </p>
+                                                </div>
+                                                <div class="save">
+                                                    <p class="value">
+                                                        $1,476
+                                                    </p>
+                                                    <p class="text">
+                                                        SAVINGS
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="timeLeft text-center">
+                                                <p>
+                                                    hurry up ! Few deals left
+                                                </p>
+                                                <span class="time">
+                                                    <i class="ti-timer color-green">
+                                                    </i>
+                                                    <b>
+                                                        8
+                                                    </b>
+                                                    d.
+                                                    <b>
+                                                        20
+                                                    </b>
+                                                    st.
+                                                    <b>
+                                                        58
+                                                    </b>
+                                                    min.
+                                                </span>
+                                            </div>
+                                            <br /><br />
+                                            @*<div class="social-sharing text-center" data-permalink="http://labs.carsonshold.com/social-sharing-buttons">
+                                                <!-- https://developers.facebook.com/docs/plugins/share-button/ -->
+                                                <a target="_blank" href="http://www.facebook.com/sharer.php?u=http://themeforest.net/user/codenpixel" class="share-facebook">
+                                                    <span class="icon icon-facebook">
+                                                    </span>
+                                                    <span class="share-title">
+                                                        Share
+                                                    </span>
+                                                    <span class="share-count is-loaded">
+                                                        163
+                                                    </span>
+                                                </a>
+                                                <!-- https://dev.twitter.com/docs/intents -->
+                                                <a target="_blank" href="http://twitter.com/share?url=http://themeforest.net/user/codenpixel" class="share-twitter">
+                                                    <span class="icon icon-twitter">
+                                                    </span>
+                                                    <span class="share-title">
+                                                        Tweet
+                                                    </span>
+                                                    <span class="share-count is-loaded">
+                                                        64
+                                                    </span>
+                                                </a>
+                                                <!--
+                                                https://developers.pinterest.com/pin_it/
+                                                Pinterest get data from the same Open Graph meta tags Facebook uses
+                                                -->
+                                            </div>*@
+                                            <!--/.social sharing -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /#buypanel -->
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /slider -->
+
+
+<section id="page" class="container">
+    <!--/.frame -->
+    <div class="row">
+        <div class="col-sm-8">
+            <div class="row">
+                <div class="col-sm-12 clearfix">
+                    <div class="hr-link">
+                        <hr class="mBtm-50 mTop-30" data-symbol="POPULAR DEALS">
+                        <div class="view-all">
+                            <a href="index.html">
+                                VIEW ALL
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--
+            <div id="grid" class="container">
+            -->
+            <div class="kodo-container">
+
+                <div class="row row-isotope">
+                    <div class="grid-sizer col-xs-6 col-sm-6 col-lg-3">
+                    </div>
+
+                    @foreach (var item in Model.Promos)
+                    {
+
+                        <div class="item col-sm-6">
+                            <div class="deal-entry green deal-entry-sm ">
+                                <div class="offer-discount">
+                                    $@item.Price
+                                </div>
+                                <div class="image ripple-effect">
+                                    <a href="#" target="_blank" title="#">
+                                        <img src="@Url.Action("DownloadFileByPath", "File", new { path = item.Images.FirstOrDefault().Path, filename = item.Images.FirstOrDefault().Filename, isEmbed = false})" alt="#" class="img-responsive">
+                                    </a>
+                                    <span class="bought">
+                                        <i class="ti-tag">
+                                        </i>
+                                        21
+                                    </span>
+                                    <div class="caption">
+                                        <h4 class="media-heading">
+                                            <a href="#">
+                                                @item.Title
+                                            </a>
+                                        </h4>
+                                        @*<p class="stars">
+                                            <i class="ti-star">
+                                            </i>
+                                            <i class="ti-star">
+                                            </i>
+                                            <i class="ti-star">
+                                            </i>
+                                            <i class="ti-start">
+                                            </i>
+                                            <i class="ti-star">
+                                            </i>
+                                        </p>*@
+                                    </div>
+                                </div>
+
+                                <footer class="clearfix">
+                                    <div class="valueInfo">
+                                        <div class="value">
+                                            <p class="value">
+                                                $@item.OriginalPrice
+                                            </p>
+                                            <p class="text">
+                                                Value
+                                            </p>
+                                        </div>
+                                        <div class="discount">
+                                            <p class="value">
+                                                64%
+                                            </p>
+                                            <p class="text">
+                                                Discount
+                                            </p>
+                                        </div>
+                                        <div class="save">
+                                            <p class="value">
+                                                $76
+                                            </p>
+                                            <p class="text">
+                                                SAVINGS
+                                            </p>
+                                        </div>
+                                    </div>
+                                </footer>
+                            </div>
+                        </div>
+                    }
+                    <!-- /.item wrap -->
+
+                    <!-- /.item wrap -->
+
+
+                </div>
+                <!--/row -->
+            </div>
+            <!-- / kodo container -->
+        </div>
+        <!-- /col 8 -->
+        <div class="col-sm-4 sidebar">
+            <div class="inner-side shadow">
+                @*<div class="widget widget-add">
+                    <hr data-symbol="ADVERTISE">
+                    <img src="http://placehold.it/380x380" alt="add" class="img-responsive">
+                </div>
+                <div class="widget widget-subscribe">
+                    <hr data-symbol="SUBSCRIBE">
+                    <div class="newsletter">
+                        <h4>
+                            Get Updates
+                            <span class="color-orange">
+                                (it’s free)
+                            </span>
+                        </h4>
+                        <p>
+                            Subscribe to our newsletter for good deals, sent out every month.
+                        </p>
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Email">
+                            <span class="input-group-btn">
+                                <button class="btn btn-primary btn-raised ripple-effect" type="button">
+                                    Subscribe
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                </div>*@
+                <div class="widget widget-menu">
+                    <hr data-symbol="CATEGORIES">
+                    <!-- Sidebar navigation -->
+                    <ul class="nav sidebar-nav">
+                        <li class="dropdown open">
+                            <a class="ripple-effect dropdown-toggle" href="#" data-toggle="dropdown">
+                                <i class="ti-shine">
+                                </i>
+                                Travel
+                                <span class="sidebar-badge">
+                                    12
+                                </span>
+                                <b class="caret">
+                                </b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="#" tabindex="-1">
+                                        Europe
+                                        <span class="sidebar-badge">
+                                            12
+                                        </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" tabindex="-1">
+                                        Promo
+                                        <span class="sidebar-badge">
+                                            0
+                                        </span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="ti-gift">
+                                </i>
+                                Gifts
+                                <span class="sidebar-badge">
+                                    3
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="ti-shopping-cart">
+                                </i>
+                                Products
+                                <span class="sidebar-badge">
+                                    456
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="ti-ticket">
+                                </i>
+                                Tickets
+                                <span class="sidebar-badge badge-circle">
+                                    12
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="ti-pulse">
+                                </i>
+                                Health
+                                <span class="sidebar-badge badge-circle">
+                                    45
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="ti-direction-alt">
+                                </i>
+                                Things To Do
+                                <span class="sidebar-badge badge-circle">
+                                    117
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="ti-cut">
+                                </i>
+                                Fashion
+                                <span class="sidebar-badge badge-circle">
+                                    117
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- Sidebar divider -->
+                </div>
+
+            </div>
+            <!-- /col 4 - sidebar -->
+        </div>
+    </div>
+    <!-- /main row -->
+</section>
