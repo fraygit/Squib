@@ -51,6 +51,7 @@ namespace Squib.Frontend.Controllers
                         OriginalPrice = promo.OriginalPrice,
                         ImageText = promo.ImageText,
                         Images = promo.Images
+                        
                     });
                 }
             }

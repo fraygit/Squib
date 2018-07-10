@@ -1,0 +1,324 @@
+﻿@model Squib.Data.Model.Promo
+
+<section id="inner-page" class="container">
+    <div class="row">
+        <div class="col-lg-8 col-sm-7">
+            <div class="post-media">
+                <div id="slider" class="flexslider">
+
+                    <div class="flex-viewport" style="overflow: hidden; position: relative;">
+                        <ul class="slides" style="width: 1200%; transition-duration: 0s; transform: translate3d(0px, 0px, 0px);">
+                            @if (Model.Images != null)
+                            {
+                                if (Model.Images.Any())
+                                {
+                                    var ctr = 0;
+                                    foreach (var img in Model.Images)
+                                    {
+                                        var liClass = ctr == 0 ? "flex-active-slide" : "";
+                                        <li class="@liClass" style="width: 883px; float: left; display: block;">
+                                            <img class="img-responsive" alt="" src="@Url.Action("DownloadFileByPath", "File", new { path = img.Path, filename = img.Filename, isEmbed = false})" draggable="false">
+                                        </li>
+                                        ctr++;
+                                    }
+                                }
+                                else
+                                {
+                                    <li class="flex-active-slide" style="width: 883px; float: left; display: block;">
+                                        <img class="img-responsive" alt="" src="http://placehold.it/900x600" draggable="false">
+                                    </li>
+
+                                }
+                            }
+                            else
+                            {
+                                <li class="flex-active-slide" style="width: 883px; float: left; display: block;">
+                                    <img class="img-responsive" alt="" src="http://placehold.it/900x600" draggable="false">
+                                </li>
+                            }
+                        </ul>
+                    </div><ul class="flex-direction-nav"><li class="flex-nav-prev"><a class="flex-prev flex-disabled" href="#" tabindex="-1">Previous</a></li><li class="flex-nav-next"><a class="flex-next" href="#">Next</a></li></ul>
+                </div>
+                <!--/slider -->
+                <div id="carousel" class="flexslider">
+
+                    <div class="flex-viewport" style="overflow: hidden; position: relative;">
+                        <ul class="slides" style="width: 1200%; transition-duration: 0s; transform: translate3d(0px, 0px, 0px);">
+
+                            @if (Model.Images != null)
+                            {
+                                if (Model.Images.Any())
+                                {
+                                    var ctr = 0;
+                                    foreach (var img in Model.Images)
+                                    {
+                                        var liClass = ctr == 0 ? "flex-active-slide" : "";
+                                        <li class="@liClass" style="width: 150px; float: left; display: block;">
+                                            <img src="@Url.Action("DownloadFileByPath", "File", new { path = img.Path, filename = img.Filename, isEmbed = false })" alt="" draggable="false">
+                                        </li>
+                                        ctr++;
+                                    }
+                                }
+                            }
+
+                        </ul>
+                    </div><ul class="flex-direction-nav"><li class="flex-nav-prev"><a class="flex-prev flex-disabled" href="#" tabindex="-1">Previous</a></li><li class="flex-nav-next"><a class="flex-next" href="#">Next</a></li></ul>
+                </div>
+                <!--/.carousel sinc -->
+            </div>
+            <!--/.post media -->
+            
+        </div>
+        <!-- /col 8 -->
+        <div class="col-sm-4">
+            <div class="widget-inner bg-white shadow">
+                <div class="buyPanel animated fadeInLeft bg-white Aligner text-center">
+                    <div class="content">
+                        <div class="deal-content">
+                            <h3>
+                                @Model.Title
+                            </h3>
+                            <p>
+                                @Model.ShortDescription
+                            </p>
+                        </div>
+                        <div class="price">
+                            <h1>
+                                $@Model.Price
+                            </h1>
+                        </div>
+                        <div class="buy-now mBtm-30">
+                            <a class="btn btn-success btn-lg btn-raised ripple-effect btn-block" data-toggle="modal" data-target="#myModal">
+                                BUY NOW
+                                <span class="link animate">
+                                </span>
+                            </a>
+                        </div>
+                        <div class="dealAttributes">
+                            <div class="valueInfo bg-light shadow">
+                                <div class="value">
+                                    <p class="value">
+                                        $2,475
+                                    </p>
+                                    <p class="text">
+                                        Value
+                                    </p>
+                                </div>
+                                <div class="discount">
+                                    <p class="value">
+                                        59%
+                                    </p>
+                                    <p class="text">
+                                        Discount
+                                    </p>
+                                </div>
+                                <div class="save">
+                                    <p class="value">
+                                        $1,476
+                                    </p>
+                                    <p class="text">
+                                        SAVINGS
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="timeLeft text-center">
+                                <p>
+                                    Požuri, DO ISTEKA PONUDE JE PREOSTALO:
+                                </p>
+                                <span class="time">
+                                    <i class="ti-timer color-green">
+                                    </i>
+                                    <b>
+                                        8
+                                    </b>
+                                    d.
+                                    <b>
+                                        20
+                                    </b>
+                                    st.
+                                    <b>
+                                        58
+                                    </b>
+                                    min.
+                                </span>
+                            </div>
+                            <div class="social-sharing text-center" data-permalink="http://labs.carsonshold.com/social-sharing-buttons">
+                                <!-- https://developers.facebook.com/docs/plugins/share-button/ -->
+                                <a target="_blank" href="http://www.facebook.com/sharer.php?u=http://themeforest.net/user/codenpixel" class="share-facebook">
+                                    <span class="icon icon-facebook">
+                                    </span>
+                                    <span class="share-title">
+                                        Share
+                                    </span>
+
+                                </a>
+                                <!-- https://dev.twitter.com/docs/intents -->
+                                <a target="_blank" href="http://twitter.com/share?url=http://themeforest.net/user/codenpixel" class="share-twitter">
+                                    <span class="icon icon-twitter">
+                                    </span>
+                                    <span class="share-title">
+                                        Tweet
+                                    </span>
+                                    <span class="share-count is-loaded">
+                                        62
+                                    </span>
+                                </a>
+                                <!--
+                                https://developers.pinterest.com/pin_it/
+                                Pinterest get data from the same Open Graph meta tags Facebook uses
+                                -->
+                            </div>
+                            <!--/.social sharing -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--/inner widget -->
+            <div class="smallFrame shadow bg-white">
+                <i class="ti-shopping-cart">
+                </i>
+                <div class="content">
+                    <strong>
+                        12 deals
+                    </strong>
+                    Purchased
+                </div>
+            </div>
+            
+            
+            <!-- /.widget -->
+        </div>
+        <!-- /col 4 - sidebar -->
+
+    </div>
+    <div class="row mTop-20">
+        <div class="col-sm-4 col-lg-3 bg-light">
+            <article class="side-details">
+
+                <div class="what-you-get">
+                    <h4 class="border">
+                        What You Get
+                    </h4>
+                    <ul>
+                        <li>
+                            Stay for two in a traditional king or double room
+                        </li>
+                        <li>
+                            Dates into September
+                        </li>
+                    </ul>
+
+                    <p>
+                        <strong>
+                            Included in room-only stays:
+                        </strong>
+                    </p>
+
+                    <ul>
+                        <li>
+                            Daily continental breakfast for two
+                        </li>
+                        <li>
+                            One bottle of rum per stay
+                        </li>
+                    </ul>
+
+                    <p>
+                        <strong>
+                            Included in all-inclusive stays:
+                        </strong>
+                    </p>
+
+                    <ul>
+                        <li>
+                            Daily breakfast, lunch, and dinner for two from the regular menus at the Circle Wine Bar and Cellar, Amalgama, Ginger Pool Bar, and Vieques del Mar Beach restaurants
+                        </li>
+                        <li>
+                            Unlimited house-brand cocktails, domestic beer, and nonalcoholic beverages
+                        </li>
+                        <li>
+                            Use of beach towels, fun zone, and fitness center
+                        </li>
+                        <li>
+                            Use of business station
+                        </li>
+                        <li>
+                            Shuttle transportation within Palmas del Mar
+                        </li>
+                        <li>
+                            WiFi
+                        </li>
+                        <li>
+                            All hotel taxes and fees
+                        </li>
+                    </ul>
+
+                    <hr>
+
+                    <p>
+                        <strong>
+                            Policies and Fees
+                        </strong>
+                    </p>
+
+
+
+
+                </div>
+
+            </article>
+
+
+        </div>
+        <!-- /col 5 -->
+        <div class="col-sm-5 col-lg-9">
+
+            <div class="widget-inner bg-white shadow mBtm-20">
+                <div role="tabpanel" id="tabs" class="tabbable responsive">
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="dropdown pull-right tabdrop hide"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="ti-menu"></i> <b class="caret"></b></a><ul class="dropdown-menu"></ul></li>
+                        <li role="presentation" class="active">
+                            <a href="#tab-1" aria-controls="home" role="tab" data-toggle="tab">
+                                Overview
+                            </a>
+                        </li>
+                        <li role="presentation">
+                            <a href="#map" aria-controls="map" role="tab" data-toggle="tab">
+                                Map &amp; Directions
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane active" id="home">
+                            <div class="tab-content">
+                                <div class="tab-pane fade active in" id="tab-1">
+                                    <h4>
+                                        Description
+                                    </h4>
+                                    @Html.Raw(Model.Description)
+                                </div>
+                                <!-- /tab content -->
+                                <div role="tabpanel" class="tab-pane" id="map">
+                                    <!-- Google map, just iframe for now -->
+                                    <div class="google-maps">
+                                        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d7098.94326104394!2d78.0430654485247!3d27.172909818538997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2s!4v1385710909804" width="600" height="450" frameborder="0" style="border:0"></iframe>
+                                    </div>
+                                    <!-- /google map -->
+                                </div>
+                                <!-- /tab -->
+                            </div>
+                        </div>
+                        <!--/tabs -->
+                    </div>
+                    <!-- /inner widget -->
+                </div>
+            </div>
+
+
+        </div>
+        <!-- col 7 -->
+    </div>
+    <!-- /main row -->
+</section>

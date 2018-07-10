@@ -188,7 +188,7 @@
                                     $@item.Price
                                 </div>
                                 <div class="image ripple-effect">
-                                    <a href="#" target="_blank" title="#">
+                                    <a href="@Url.Action("Details", "Promo", new { promoId = item.Id })" target="_blank" title="#">
                                         <img src="@Url.Action("DownloadFileByPath", "File", new { path = item.Images.FirstOrDefault().Path, filename = item.Images.FirstOrDefault().Filename, isEmbed = false})" alt="#" class="img-responsive">
                                     </a>
                                     <span class="bought">
@@ -198,7 +198,7 @@
                                     </span>
                                     <div class="caption">
                                         <h4 class="media-heading">
-                                            <a href="#">
+                                            <a href="@Url.Action("Details", "Promo", new { promoId = item.Id })">
                                                 @item.Title
                                             </a>
                                         </h4>
