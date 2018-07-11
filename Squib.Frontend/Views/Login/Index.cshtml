@@ -1,0 +1,63 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+}
+<section id="page" class="container mTop-30 mBtm-50">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="panel-body frameLR bg-white shadow space-sm">
+                @if (ViewBag.Message != null)
+                {
+                <div class="alert alert-danger alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">
+                            ×
+                        </span>
+                    </button>
+                    <strong>
+                        Warning!
+                    </strong>
+                    @ViewBag.Message
+                </div>
+                }
+
+                <form action="/login" method="post">
+                    <div class="col-md-12">
+                        <h3 class="dark-grey">
+                            Sign In
+                        </h3>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>
+                                    Email
+                                </label>
+                                <input type="text" name="email" class="form-control" id="email" value="">
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>
+                                    Password
+                                </label>
+                                <input type="password" name="password" class="form-control" id="password" value="">
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <button type="submit" class="btn btn-primary btn-raised ripple-effect">
+                                Sign In
+                            </button>
+                        </div>
+                    </div>
+                </form>
+
+
+
+
+            </div>
+            <!-- /inner wrap -->
+        </div>
+    </div>
+
+</section>
