@@ -1,0 +1,90 @@
+﻿
+@{
+    ViewBag.Title = "Register";
+}
+<section id="page" class="container mTop-30 mBtm-50">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="panel-body frameLR bg-white shadow space-sm">
+                @if (ViewBag.Message != null)
+                {
+                    <div class="alert alert-danger alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">
+                                ×
+                            </span>
+                        </button>
+                        <strong>
+                            Warning!
+                        </strong>
+                        @ViewBag.Message
+                    </div>
+                }
+
+                <form action="/login/register" method="post">
+                    <div class="col-md-12">
+                        <h3 class="dark-grey">
+                            Sign Up
+                        </h3>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>
+                                    Email
+                                </label>
+                                <input type="text" name="email" class="form-control" id="email" value="">
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>
+                                    Password
+                                </label>
+                                <input type="password" name="password" class="form-control" id="password" value="">
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>
+                                    Re-type Password
+                                </label>
+                                <input type="password" name="passwordRepeat" class="form-control" id="passwordRepeat" value="">
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>
+                                    First name
+                                </label>
+                                <input type="text" name="firstName" class="form-control" id="firstName" value="">
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>
+                                    Last name
+                                </label>
+                                <input type="text" name="lastName" class="form-control" id="lastName" value="">
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <button type="submit" class="btn btn-primary btn-raised ripple-effect">
+                                Sign Up
+                            </button>
+                        </div>
+                    </div>
+                </form>
+
+
+
+
+            </div>
+            <!-- /inner wrap -->
+        </div>
+    </div>
+
+</section>

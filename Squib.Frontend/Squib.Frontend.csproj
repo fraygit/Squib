@@ -264,6 +264,7 @@
     <Content Include="Views\Partial\Header.cshtml" />
     <Content Include="Views\Promo\Details.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\Login\Register.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
