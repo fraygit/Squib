@@ -23,6 +23,11 @@ namespace Squib.Frontend.Controllers
             return View();
         }
 
+        public ActionResult LeftMenu()
+        {
+            return PartialView();
+        }
+
         public ActionResult Header()
         {
             if (User.Identity.IsAuthenticated)

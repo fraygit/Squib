@@ -1,0 +1,58 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+<section id="page" class="container">
+    <div class="row">
+        <div class="col-sm-4 sidebar">
+
+            @Html.Action("LeftMenu", "Partial")
+            <!-- /col 4 - sidebar -->
+        </div>
+        <div class="col-sm-8">
+            <div class="panel-body frameLR bg-white shadow mTop-30">
+                <h3>Purchased Coupons</h3>
+
+                <table class="cart-contents">
+                    <thead>
+                        <tr>
+                            <th class="hidden-xs">
+                                Expires
+                            </th>
+                            <th>
+                                Name
+                            </th>
+                            <th class="hidden-xs">
+                                Status
+                            </th>
+                            <th>
+                                QR Code
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="image hidden-xs">
+                                7 Aug 2018
+                            </td>
+                            <td class="details">
+                                Full Breakfast
+                            </td>
+                            <td class="unit-price hidden-xs">
+                                Redeemed
+                            </td>
+                            <td class="total-price">
+                                <button type="button" class="btn btn-circle btn-success disabled">
+                                    <span class="fa fa-qrcode">
+                                    </span>
+                                </button>
+                            </td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
