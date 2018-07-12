@@ -24,6 +24,10 @@ namespace Squib.Frontend.Controllers
         // GET: Login
         public ActionResult Index()
         {
+            if (Request.QueryString["ReturnUrl"] != null)
+            {
+                ViewBag.ReturnUrl = Request.QueryString["ReturnUrl"];
+            }
             return View();
         }
 
@@ -73,12 +77,16 @@ namespace Squib.Frontend.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index(string email, string password)
+        public ActionResult Index(string email, string password, string returnUrl)
         {
             var isUserValid = Membership.ValidateUser(email, password);
             if (isUserValid)
             {
                 FormsAuthentication.SetAuthCookie(email, false);
+                if (!string.IsNullOrEmpty(returnUrl))
+                {
+                    Response.Redirect(returnUrl);
+                }
                 return RedirectToAction("Index", "Home");
             }
 
