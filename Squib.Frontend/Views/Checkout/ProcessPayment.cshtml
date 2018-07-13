@@ -1,0 +1,50 @@
+﻿@model Squib.Data.Model.Promo
+
+<section id="page" class="container">
+    <div class="row">
+
+        <!-- Main Col -->
+        <div class="main-col col-md-9">
+
+            <div class="panel-body frameLR bg-white shadow mTop-30 mBtm-50">
+
+                <!-- Checkout Accordion -->
+                <div class="panel-group checkout" id="accordion">
+
+
+                    <div class="panel panel-default">
+                        <!-- Heading -->
+                        <p>@Model.Title</p>
+
+                        @if (ViewBag.ShowSuccess)
+                        {
+                            <div class="alert alert-success alert-dismissible" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">
+                                        ×
+                                    </span>
+                                </button>
+                                <strong>
+                                </strong>
+                                Payment successful! Thank you.
+                            </div>
+                        }
+
+                        <br />
+                        <div id="qrcode" data-promo-id="@Model.Id"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+@section scripts{
+    <script src="/js/qrcode.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            new QRCode(document.getElementById("qrcode"), $("#qrcode").data("promo-id"));
+        });
+    </script>
+}

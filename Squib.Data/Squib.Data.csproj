@@ -58,15 +58,21 @@
   <ItemGroup>
     <Compile Include="Entities\Base\IMongoEntity.cs" />
     <Compile Include="Entities\Base\MongoEntity.cs" />
+    <Compile Include="Interface\ICouponRepository.cs" />
     <Compile Include="Interface\IOrganisationRepository.cs" />
+    <Compile Include="Interface\IPaymentTransactionRepository.cs" />
     <Compile Include="Interface\IPromoRepository.cs" />
     <Compile Include="Interface\IUserRepository.cs" />
+    <Compile Include="Model\Coupon.cs" />
     <Compile Include="Model\Organisation.cs" />
+    <Compile Include="Model\PaymentTransaction.cs" />
     <Compile Include="Model\Promo.cs" />
     <Compile Include="Model\PromoImages.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\CouponRepository.cs" />
     <Compile Include="Repository\OrganisationRepository.cs" />
+    <Compile Include="Repository\PaymentTransactionRepository.cs" />
     <Compile Include="Repository\PromoRepository.cs" />
     <Compile Include="Repository\UserRepository.cs" />
     <Compile Include="Security\SquibCrypto.cs" />

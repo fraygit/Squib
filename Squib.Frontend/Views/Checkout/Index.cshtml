@@ -1,4 +1,4 @@
-﻿
+﻿@model Squib.Data.Model.Promo
 @{
     ViewBag.Title = "Index";
 }
@@ -17,16 +17,7 @@
                     <!-- Panel -->
                     <div class="panel panel-default">
                         <!-- Heading -->
-                        <div class="panel-heading heading-iconed">
-                            <h4 class="panel-title case-c">
-                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" class="collapsed">
-                                    <i class="icon-left">
-                                        1
-                                    </i>
-                                    checkout method
-                                </a>
-                            </h4>
-                        </div>
+                        <h3>Checkout</h3>
                         <!-- /Heading -->
                         <!-- Collapse -->
                         <div id="collapseOne" class="panel-collapse collapse" aria-expanded="true" role="button" style="height: 0px;">
@@ -119,205 +110,15 @@
                         <!-- /Collapse -->
 
                     </div>
-                    <!-- /Panel -->
-                    <!-- Panel -->
+
                     <div class="panel panel-default">
                         <!-- Heading -->
-                        <div class="panel-heading heading-iconed">
-                            <h4 class="panel-title">
-                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" class="collapsed" aria-expanded="false">
-                                    <i class="icon-left">
-                                        2
-                                    </i>
-                                    Billing Information
-                                </a>
-                            </h4>
-                        </div>
-                        <!-- /Heading -->
-                        <!-- Collapse -->
-                        <div id="collapseTwo" class="panel-collapse collapse" aria-expanded="false" role="button" style="height: 0px;">
-
-                            <!-- Panel Body -->
-                            <div class="panel-body">
-                                <!-- Form -->
-                                <form>
-                                    <!-- Row -->
-                                    <div class="row">
-                                        <!-- Col -->
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>
-                                                    First Name
-                                                </label>
-                                                <input type="text" class="form-control" placeholder="Enter Name">
-                                            </div>
-
-                                        </div>
-                                        <!-- /Col -->
-                                        <!-- Col -->
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>
-                                                    Second Name
-                                                </label>
-                                                <input type="text" class="form-control" placeholder="Enter Name">
-                                            </div>
-                                        </div>
-                                        <!-- /Col -->
-                                        <!-- Col -->
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>
-                                                    Country
-                                                </label>
-                                                <select class="form-control">
-                                                    <option>
-                                                        Select country
-                                                    </option>
-                                                    <option>
-                                                        England
-                                                    </option>
-                                                    <option>
-                                                        Germany
-                                                    </option>
-                                                    <option>
-                                                        France
-                                                    </option>
-                                                    <option>
-                                                        Spain
-                                                    </option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <!-- /Col -->
-                                        <!-- Col -->
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>
-                                                    City / Town
-                                                </label>
-                                                <select class="form-control">
-                                                    <option>
-                                                        Select city
-                                                    </option>
-                                                    <option>
-                                                        New York
-                                                    </option>
-                                                    <option>
-                                                        Paris
-                                                    </option>
-                                                    <option>
-                                                        Nairobi
-                                                    </option>
-                                                    <option>
-                                                        Cairo
-                                                    </option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <!-- /Col -->
-                                        <!-- Col -->
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>
-                                                    Phone Number
-                                                </label>
-                                                <input type="text" class="form-control" placeholder="Enter Name">
-                                            </div>
-                                        </div>
-                                        <!-- /Col -->
-                                        <!-- Col -->
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>
-                                                    Postal Code
-                                                </label>
-                                                <input type="text" class="form-control" placeholder="Enter Name">
-                                            </div>
-                                        </div>
-                                        <!-- /Col -->
-
-                                    </div>
-                                    <!-- /Row -->
-                                    <!-- Form Group -->
-                                    <div class="form-group">
-                                        <label>
-                                            Address Line 1
-                                        </label>
-                                        <input type="text" class="form-control" placeholder="Enter Name">
-                                    </div>
-                                    <!-- /Form Group -->
-                                    <!-- Form Group -->
-                                    <div class="form-group">
-                                        <label>
-                                            Address Line 2
-                                        </label>
-                                        <input type="text" class="form-control" placeholder="Enter Name">
-                                    </div>
-
-                                    <!-- /Form Group -->
-
-                                </form>
-                                <!-- Form -->
-
-                            </div>
-                            <!-- /Panel Body -->
-
-                        </div>
-                        <!-- /Collapse -->
-
-                    </div>
-                    <!-- /Panel -->
-                    <!-- Panel -->
-                    <div class="panel panel-default">
-                        <!-- Heading -->
-                        <div class="panel-heading heading-iconed">
-                            <h4 class="panel-title">
-                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" class="collapsed" aria-expanded="false">
-                                    <i class="icon-left">
-                                        3
-                                    </i>
-                                    Shippping Information
-                                </a>
-                            </h4>
-                        </div>
-                        <!-- /Heading -->
-                        <!-- Collapse -->
-                        <div id="collapseThree" class="panel-collapse collapse" aria-expanded="false" role="button" style="height: 0px;">
-
-                            <!-- Panel Body -->
-                            <div class="panel-body">
-                                <p>
-                                    Please select a shipping method.
-                                </p>
-                                <div class="radio">
-                                    <label>
-                                        <input value="" name="acnt-opt" type="radio" checked="">
-                                        Cash on delivery
-                                    </label>
-                                </div>
-                                <div class="radio">
-                                    <label>
-                                        <input value="" name="acnt-opt" type="radio">
-                                        Send by courier
-                                    </label>
-                                </div>
-                            </div>
-                            <!-- /Panel Body -->
-
-                        </div>
-                        <!-- /Collapse -->
-
-                    </div>
-                    <!-- /Panel -->
-                    <!-- Panel -->
-                    <div class="panel panel-default">
-                        <!-- Heading -->
+                        <p>@Model.Title</p>
                         <div class="panel-heading heading-iconed">
                             <h4 class="panel-title">
                                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour" class="" aria-expanded="false">
                                     <i class="icon-left">
-                                        4
+
                                     </i>
                                     Payment Information
                                 </a>
@@ -330,127 +131,44 @@
                             <!-- Panel Body -->
                             <div class="panel-body">
 
-                                <p>
-                                    Please select a payment method.
-                                </p>
-                                <div class="radio">
-                                    <label>
-                                        <input value="" name="acnt-opt" type="radio">
-                                        Cash on delivery
-                                    </label>
-                                </div>
-                                <div class="radio">
-                                    <label>
-                                        <input value="" name="acnt-opt" type="radio">
-                                        Paypal
-                                    </label>
-                                </div>
-                                <div class="radio">
-                                    <label>
-                                        <input value="" name="acnt-opt" type="radio" checked="">
-                                        Credit Card
-                                    </label>
-                                </div>
+                                @if (ViewBag.ShowSuccess)
+                                {
+                                    <div class="alert alert-success alert-dismissible" role="alert">
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">
+                                                ×
+                                            </span>
+                                        </button>
+                                        <strong>
+                                        </strong>
+                                        Payment successful! Thank you.
+                                    </div>
+                                }
 
-                                <hr>
+                                <form id="payment-form" method="post" action="/checkout/ProcessPayment">
+                                    <input id="promoId" name="promoId" type="hidden" value="@Model.Id">
+                                    <input id="quantity" name="quantity" type="hidden" value="@ViewBag.Quantity">
+                                    <input id="amount" name="amount" type="hidden" value="@ViewBag.Total">
+                                    <input id="nonce" name="payment_method_nonce" type="hidden" />
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div id="bt-dropin">
 
-                                <!-- Row -->
-                                <div class="row">
-
-                                    <!-- Col -->
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>
-                                                Name on card
-                                            </label>
-                                            <input type="text" class="form-control" placeholder="Enter Name">
+                                            </div>
                                         </div>
                                     </div>
-                                    <!-- /Col -->
-                                    <!-- Col -->
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>
-                                                Credit card number
-                                            </label>
-                                            <input type="text" class="form-control" placeholder="Enter Name">
-                                        </div>
-                                    </div>
-                                    <!-- /Col -->
-                                    <!-- Col -->
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label>
-                                                Card Type
-                                            </label>
-                                            <select class="form-control">
-                                                <option>
-                                                    Select country
-                                                </option>
-                                                <option>
-                                                    England
-                                                </option>
-                                                <option>
-                                                    Germany
-                                                </option>
-                                                <option>
-                                                    France
-                                                </option>
-                                                <option>
-                                                    Spain
-                                                </option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <!-- /Col -->
-                                    <!-- Col -->
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label>
-                                                Expiration date
-                                            </label>
-                                            <select class="form-control">
-                                                <option>
-                                                    Select city
-                                                </option>
-                                                <option>
-                                                    New York
-                                                </option>
-                                                <option>
-                                                    Paris
-                                                </option>
-                                                <option>
-                                                    Nairobi
-                                                </option>
-                                                <option>
-                                                    Cairo
-                                                </option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <!-- /Col -->
-                                    <!-- Col -->
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label>
-                                                CCV Code
-                                            </label>
-                                            <input type="text" class="form-control" placeholder="3 digits only">
-                                        </div>
-                                    </div>
-                                    <!-- /Col -->
 
-                                </div>
-                                <!-- /Row -->
-
-                                <hr>
-
-                                <button class="btn btn-primary btn-raised ripple-effect ">
-                                    complete order
-                                </button>
-                                <button class="btn btn-danger btn-raised ripple-effect ">
-                                    cancel order
-                                </button>
+                                    @if (!ViewBag.ShowSuccess)
+                                    {
+                                        <hr>
+                                        <button class="btn btn-primary btn-raised ripple-effect ">
+                                            Place order
+                                        </button>
+                                        <a class="btn btn-danger btn-raised ripple-effect" href="/">
+                                            cancel order
+                                        </a>
+                                    }
+                                </form>
                             </div>
                             <!-- /Panel Body -->
                         </div>
@@ -471,40 +189,25 @@
             <div class="panel-body frameLR bg-white shadow mTop-30 mBtm-50">
                 <!-- Side Widget -->
                 <div class="order-summary">
+                    <strong class="text-center">@Model.Title</strong>
+                    <br /><br />
+                    <form method="post">
+                        <input type="hidden" name="promoId" value="@Model.Id" />
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Quantity</label>
+                            <input type="number" class="form-control" name="quantity" placeholder="Quantity" value="@ViewBag.Quantity">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Update</button>
+                    </form>
+                    <br /><br />
                     <table id="cart-summary" class="std table">
                         <tbody>
                             <tr>
                                 <td>
-                                    Total products
-                                </td>
-                                <td class="price">
-                                    $216.51
-                                </td>
-                            </tr>
-                            <tr style="">
-                                <td>
-                                    Shipping
-                                </td>
-                                <td class="price">
-                                    <span class="success">
-                                        Free shipping!
-                                    </span>
-                                </td>
-                            </tr>
-                            <tr class="cart-total-price ">
-                                <td>
-                                    Total (tax excl.)
-                                </td>
-                                <td class="price">
-                                    $216.51
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Total tax
+                                    Price
                                 </td>
                                 <td class="price" id="total-tax">
-                                    $0.00
+                                    $@Model.Price x @ViewBag.Quantity
                                 </td>
                             </tr>
                             <tr>
@@ -512,18 +215,12 @@
                                     Total
                                 </td>
                                 <td class=" site-color" id="total-price">
-                                    $216.51
+                                    <b>$@ViewBag.Total</b>
                                 </td>
                             </tr>
                         </tbody>
                         <tbody></tbody>
                     </table>
-                    <button class="btn btn-danger btn-raised ripple-effect btn-block">
-                        edit cart
-                    </button>
-                    <button class="btn btn-success btn-raised ripple-effect btn-block">
-                        complete order
-                    </button>
                 </div>
                 <!-- /Side Widget -->
             </div>
@@ -535,3 +232,33 @@
     </div>
 </section>
 
+@section scripts{
+    <script src="https://js.braintreegateway.com/web/dropin/1.11.0/js/dropin.min.js"></script>
+    <script>
+    var client_token = "@ViewBag.ClientToken";
+    var form = document.querySelector('#payment-form');
+
+    braintree.dropin.create({
+        authorization: client_token,
+        container: '#bt-dropin',
+        paypal: {
+            flow: 'vault'
+        }
+    }, function (createErr, instance) {
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            instance.requestPaymentMethod(function (err, payload) {
+                if (err) {
+                    console.log('Error', err);
+                    return;
+                }
+
+                // Add the nonce to the form and submit
+                document.querySelector('#nonce').value = payload.nonce;
+                form.submit();
+            });
+        });
+    });
+    </script>
+}
