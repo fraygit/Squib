@@ -25,5 +25,6 @@ namespace Squib.Data.Model
         public List<PromoImages> Images { get; set; }
         public string Address { get; set; }
         public string Status { get; set; }
+        public int NumberOfDaysValid { get; set; }
     }
 }

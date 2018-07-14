@@ -14,5 +14,6 @@ namespace Squib.Data.Model
         public ObjectId PromoId { get; set; }
         public DateTime DateExpires { get; set; }
         public ObjectId TransactionId { get; set; }
+        public string Status { get; set; }
     }
 }

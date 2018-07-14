@@ -10,5 +10,6 @@ namespace Squib.Data.Interface
 {
     public interface ICouponRepository : IEntityService<Coupon>
     {
+        Task<List<Coupon>> GetByUser(string user);
     }
 }

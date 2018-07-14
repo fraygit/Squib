@@ -2,6 +2,7 @@
 using MongoDB.Bson;
 using Squib.Data.Interface;
 using Squib.Data.Model;
+using Squib.Shared.Common;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -74,6 +75,10 @@ namespace Squib.Frontend.Controllers
             var promoId = Request["promoId"];
             var quantity = int.Parse(Request["quantity"]);
 
+            ViewBag.Quantity = quantity;
+            var promo = await _promoRepository.Get(promoId);
+            ViewBag.Total = ViewBag.Quantity * promo.Price;
+
             var request = new TransactionRequest
             {
                 Amount = amount,
@@ -107,7 +112,9 @@ namespace Squib.Frontend.Controllers
                         DateCreated = DateTime.Now,
                         PromoId = ObjectId.Parse(promoId),
                         TransactionId = transation.Id,
-                        User = User.Identity.Name
+                        User = User.Identity.Name,
+                        Status = Enums.CouponStatus.Valid.ToString(),
+                        DateExpires = DateTime.Now.AddDays(promo.NumberOfDaysValid > 0 ? promo.NumberOfDaysValid : 30)                        
                     });
                 }
 
@@ -121,10 +128,6 @@ namespace Squib.Frontend.Controllers
             {
 
             }
-
-            ViewBag.Quantity = quantity;
-            var promo = await _promoRepository.Get(promoId);
-            ViewBag.Total = ViewBag.Quantity * promo.Price;
 
             return View(promo);
         }

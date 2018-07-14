@@ -1,4 +1,4 @@
-﻿
+﻿@model List<Squib.Frontend.Models.CouponPromoList>
 @{
     ViewBag.Title = "Index";
 }
@@ -31,6 +31,26 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td class="image hidden-xs">
+                                    @item.Coupon.DateExpires.ToString("d MMM yyyy")
+                                </td>
+                                <td class="details">
+                                    @item.Promo.Title
+                                </td>
+                                <td class="unit-price hidden-xs">
+                                    @item.Coupon.Status
+                                </td>
+                                <td class="total-price">
+                                    <button type="button" class="btn btn-circle btn-success disabled">
+                                        <span class="fa fa-qrcode">
+                                        </span>
+                                    </button>
+                                </td>
+                            </tr>
+                        }
                         <tr>
                             <td class="image hidden-xs">
                                 7 Aug 2018
