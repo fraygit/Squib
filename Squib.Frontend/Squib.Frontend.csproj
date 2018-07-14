@@ -177,6 +177,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CheckoutController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
+    <Compile Include="Controllers\CouponController.cs" />
     <Compile Include="Controllers\FileController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -279,6 +280,7 @@
     <Content Include="Views\Partial\LeftMenu.cshtml" />
     <Content Include="Views\Contact\Runadeal.cshtml" />
     <Content Include="Views\Checkout\ProcessPayment.cshtml" />
+    <Content Include="Views\Coupon\Redeem.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
