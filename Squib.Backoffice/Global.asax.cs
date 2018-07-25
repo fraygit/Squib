@@ -26,6 +26,7 @@ namespace Squib.Backoffice
             container.Register<IUserRepository, UserRepository>(Lifestyle.Scoped);
             container.Register<IPromoRepository, PromoRepository>(Lifestyle.Scoped);
             container.Register<IOrganisationRepository, OrganisationRepository>(Lifestyle.Scoped);
+            container.Register<ICouponRepository, CouponRepository>(Lifestyle.Scoped);
 
             container.RegisterMvcControllers(Assembly.GetExecutingAssembly());
             container.Verify();
